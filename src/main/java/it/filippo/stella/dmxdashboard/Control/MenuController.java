@@ -34,9 +34,14 @@ public class MenuController implements ActionListener{
     
     @Override
     public void actionPerformed(ActionEvent e) {
-        /*if(e.getSource()==this.mf.getjButtonMenu()){
-            System.out.println("bottone premuto");
-        }*/
+        if(e.getSource()==this.mf.getJButtonMenu()){
+            if(mf.isMenuOpen()){
+                this.mf.handleMenu(true);
+            }
+            else{
+                this.mf.handleMenu(false);
+            }
+        }
     }
     
 }
