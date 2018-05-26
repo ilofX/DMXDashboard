@@ -15,8 +15,12 @@
  */
 package it.filippo.stella.dmxdashboard.View;
 
+import java.awt.Dimension;
 import java.awt.event.ActionListener;
-import javax.swing.JScrollPane;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JButton;
+import javax.swing.JPanel;
 
 /**
  *
@@ -29,12 +33,26 @@ public class MainFrame extends javax.swing.JFrame {
      * Creates new form MainFrame
      */
     public MainFrame() {
-        initComponents();
-
+        this.initComponents();
+        this.initializeMenu();
+    }
+    
+    private void initializeMenu(){
+        this.jPanelMenu.setPreferredSize(new Dimension(0, this.jPanelMenu.getHeight()));
+        this.jPanelMenu.revalidate();
+        this.jPanelMenu.repaint();
     }
     
     public final void setMenuListener(ActionListener al){
-        //this.jButtonMenu.addActionListener(al);
+        this.jButtonMenu.addActionListener(al);
+    }
+    
+    public final void handleMenu(boolean toClose){
+        new menuHandler(this.jPanelMenu, this.jButtonMenu, toClose).start();
+    }
+    
+    public final boolean isMenuOpen(){
+        return this.jPanelMenu.getWidth()>=200;
     }
 
     /**
@@ -48,8 +66,9 @@ public class MainFrame extends javax.swing.JFrame {
 
         jLayeredPane1 = new javax.swing.JLayeredPane();
         jPanel1 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jPanel2 = new javax.swing.JPanel();
+        jButtonMenu = new javax.swing.JButton();
+        jPanelMenu = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("DMXDashboard");
@@ -63,44 +82,60 @@ public class MainFrame extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(58, 140, 200));
 
+        jButtonMenu.setBackground(new java.awt.Color(58, 140, 200));
+        jButtonMenu.setForeground(new java.awt.Color(248, 248, 255));
+        jButtonMenu.setText("Menu");
+        jButtonMenu.setBorder(null);
+        jButtonMenu.setBorderPainted(false);
+        jButtonMenu.setFocusPainted(false);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 800, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jButtonMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 30, Short.MAX_VALUE)
+            .addComponent(jButtonMenu, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
         );
 
-        jScrollPane1.setBackground(new java.awt.Color(58, 140, 200));
-        jScrollPane1.setBorder(null);
-        jScrollPane1.setForeground(new java.awt.Color(248, 248, 255));
-        jScrollPane1.setMinimumSize(new java.awt.Dimension(200, 570));
-        jScrollPane1.setPreferredSize(new java.awt.Dimension(200, 570));
+        jPanelMenu.setBackground(new java.awt.Color(58, 140, 200));
+        jPanelMenu.setForeground(new java.awt.Color(248, 248, 255));
+        jPanelMenu.setMaximumSize(new java.awt.Dimension(200, 32767));
+        jPanelMenu.setMinimumSize(new java.awt.Dimension(0, 570));
+        jPanelMenu.setPreferredSize(new java.awt.Dimension(200, 570));
 
-        jPanel2.setBackground(new java.awt.Color(58, 140, 200));
-        jPanel2.setForeground(new java.awt.Color(248, 248, 255));
-        jPanel2.setMinimumSize(new java.awt.Dimension(200, 570));
-        jPanel2.setPreferredSize(new java.awt.Dimension(200, 570));
-        jPanel2.setRequestFocusEnabled(false);
+        jButton1.setBackground(new java.awt.Color(58, 140, 200));
+        jButton1.setForeground(new java.awt.Color(248, 248, 255));
+        jButton1.setText("Main");
+        jButton1.setBorder(null);
+        jButton1.setBorderPainted(false);
+        jButton1.setContentAreaFilled(false);
+        jButton1.setFocusPainted(false);
+        jButton1.setMaximumSize(new java.awt.Dimension(200, 40));
+        jButton1.setMinimumSize(new java.awt.Dimension(200, 40));
+        jButton1.setOpaque(false);
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 200, Short.MAX_VALUE)
+        javax.swing.GroupLayout jPanelMenuLayout = new javax.swing.GroupLayout(jPanelMenu);
+        jPanelMenu.setLayout(jPanelMenuLayout);
+        jPanelMenuLayout.setHorizontalGroup(
+            jPanelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 570, Short.MAX_VALUE)
+        jPanelMenuLayout.setVerticalGroup(
+            jPanelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelMenuLayout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(515, Short.MAX_VALUE))
         );
-
-        jScrollPane1.setViewportView(jPanel2);
 
         jLayeredPane1.setLayer(jPanel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(jScrollPane1, javax.swing.JLayeredPane.POPUP_LAYER);
+        jLayeredPane1.setLayer(jPanelMenu, javax.swing.JLayeredPane.MODAL_LAYER);
 
         javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
         jLayeredPane1.setLayout(jLayeredPane1Layout);
@@ -108,17 +143,17 @@ public class MainFrame extends javax.swing.JFrame {
             jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jLayeredPane1Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(jPanelMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 600, Short.MAX_VALUE))
         );
         jLayeredPane1Layout.setVerticalGroup(
             jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jLayeredPane1Layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanelMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        jPanelMenu.getAccessibleContext().setAccessibleDescription("");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -135,16 +170,66 @@ public class MainFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButtonMenu;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPanel jPanelMenu;
     // End of variables declaration//GEN-END:variables
 
-
-    public JScrollPane getjScrollPane1() {
-        return jScrollPane1;
+    public JButton getJButtonMenu() {
+        return this.jButtonMenu;
     }
     
+    
+    class menuHandler extends Thread{
+        
+        private final JPanel jPanelMenu;
+        private final JButton jButtonMenu;
+        private final boolean toClose;
 
+        public menuHandler(JPanel jPanelMenu, JButton jButtonMenu, boolean toClose) {
+            super("MenuHandler");
+            this.jButtonMenu = jButtonMenu;
+            this.jButtonMenu.setEnabled(false);
+            this.jPanelMenu = jPanelMenu;
+            this.toClose = toClose;
+        }
+
+        @Override
+        public void run() {
+            if(this.toClose){
+                do{
+                    try {
+                        this.jPanelMenu.setPreferredSize(new Dimension(this.jPanelMenu.getWidth()-2, this.jPanelMenu.getHeight()));
+                        this.jPanelMenu.revalidate();
+                        this.jPanelMenu.repaint();
+                        this.sleep(5);
+                    } catch (InterruptedException ex) {
+                        Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }while(this.jPanelMenu.getWidth()>=0);
+            }
+            else{
+                do{
+                    try {
+                        this.jPanelMenu.setPreferredSize(new Dimension(this.jPanelMenu.getWidth()+2, this.jPanelMenu.getHeight()));
+                        this.jPanelMenu.revalidate();
+                        this.jPanelMenu.repaint();
+                        this.sleep(5);
+                    } catch (InterruptedException ex) {
+                        Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }while(this.jPanelMenu.getWidth()<=200);
+            
+            }
+        this.jPanelMenu.revalidate();
+        this.jPanelMenu.repaint();
+        this.jButtonMenu.setEnabled(true);
+        }
+        
+    }
+
+ 
+    
 }
