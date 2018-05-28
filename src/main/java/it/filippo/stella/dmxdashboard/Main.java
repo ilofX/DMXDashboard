@@ -17,6 +17,8 @@ package it.filippo.stella.dmxdashboard;
 
 import it.filippo.stella.dmxdashboard.Control.MenuController;
 import it.filippo.stella.dmxdashboard.View.MainFrame;
+import it.filippo.stella.dmxdashboard.View.Panels.MainPanel;
+import javax.swing.JLayeredPane;
 
 /**
  *
@@ -30,12 +32,14 @@ public class Main {
         
         //View Classes
         MainFrame mf = new MainFrame();
-        
+        MainPanel mp = new MainPanel();
         
         //Controller Classes
         MenuController mc = new MenuController(mf);
         
         //MainFrame Visible
+        mf.addLayer(mp, JLayeredPane.DRAG_LAYER);
+        mp.setBounds(0, 20, 800, 570);
         mf.setVisible(true);
     }
     
