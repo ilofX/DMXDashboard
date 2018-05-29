@@ -18,7 +18,8 @@ package it.filippo.stella.dmxdashboard;
 import it.filippo.stella.dmxdashboard.Control.MenuController;
 import it.filippo.stella.dmxdashboard.View.MainFrame;
 import it.filippo.stella.dmxdashboard.View.Panels.MainPanel;
-import javax.swing.JLayeredPane;
+import java.awt.Color;
+import javax.swing.UIManager;
 
 /**
  *
@@ -28,19 +29,29 @@ import javax.swing.JLayeredPane;
 public class Main {
 
     public static void main(String[] args) {
+        Main.setColors();
         //Model Classes
+        
         
         //View Classes
         MainFrame mf = new MainFrame();
         MainPanel mp = new MainPanel();
         
         //Controller Classes
-        MenuController mc = new MenuController(mf);
+        MenuController mc = new MenuController(mf,mp);
         
         //MainFrame Visible
-        mf.addLayer(mp, JLayeredPane.DRAG_LAYER);
-        mp.setBounds(0, 20, 800, 570);
         mf.setVisible(true);
+    }
+    
+    public static void setColors(){
+        UIManager.put("ComboBox.background", new Color(167, 199, 197));
+        UIManager.put("JTextField.background", new Color(167, 199, 197));
+        UIManager.put("ComboBox.selectionBackground", new Color(167, 199, 197));
+        UIManager.put("ComboBox.selectionForeground", new Color(224, 224, 255));
+        UIManager.put("ComboBox.foreground", new Color(21, 21, 21));
+        UIManager.put("Spinner.background", new Color(167, 199, 197));
+        UIManager.put("Spinner.foreground", new Color(224, 224, 255));
     }
     
 }
