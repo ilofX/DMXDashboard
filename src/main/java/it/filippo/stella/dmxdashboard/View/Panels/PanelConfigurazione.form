@@ -135,7 +135,7 @@
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
             <LineBorder>
-              <Color PropertyName="color" blue="c5" green="c7" red="a7" type="rgb"/>
+              <Color PropertyName="color" blue="ff" green="f8" red="f8" type="rgb"/>
             </LineBorder>
           </Border>
         </Property>

@@ -16,7 +16,7 @@
 package it.filippo.stella.dmxdashboard.Control;
 
 import it.filippo.stella.dmxdashboard.View.MainFrame;
-import it.filippo.stella.dmxdashboard.View.Panels.MainPanel;
+import it.filippo.stella.dmxdashboard.View.Panels.PanelEffetti;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -27,9 +27,9 @@ import java.awt.event.ActionListener;
 public class MenuController implements ActionListener{
 
     private final MainFrame mf;
-    private final MainPanel mp;
+    private final PanelEffetti mp;
 
-    public MenuController(MainFrame mf, MainPanel mp) {
+    public MenuController(MainFrame mf, PanelEffetti mp) {
         this.mf = mf;
         this.mp = mp;
         this.mf.setMenuListener(this);
@@ -49,7 +49,8 @@ public class MenuController implements ActionListener{
             this.mf.getJPanelMain().removeAll();
             this.mf.getJPanelMain().add(this.mp);
             this.mf.revalidate();
-            this.mf.repaint();       
+            this.mf.repaint();    
+            this.mf.handleMenu(true);
         }
     }
     

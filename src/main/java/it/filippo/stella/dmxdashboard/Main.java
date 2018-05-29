@@ -17,7 +17,7 @@ package it.filippo.stella.dmxdashboard;
 
 import it.filippo.stella.dmxdashboard.Control.MenuController;
 import it.filippo.stella.dmxdashboard.View.MainFrame;
-import it.filippo.stella.dmxdashboard.View.Panels.MainPanel;
+import it.filippo.stella.dmxdashboard.View.Panels.PanelEffetti;
 import java.awt.Color;
 import javax.swing.UIManager;
 
@@ -35,7 +35,7 @@ public class Main {
         
         //View Classes
         MainFrame mf = new MainFrame();
-        MainPanel mp = new MainPanel();
+        PanelEffetti mp = new PanelEffetti();
         
         //Controller Classes
         MenuController mc = new MenuController(mf,mp);
@@ -45,13 +45,13 @@ public class Main {
     }
     
     public static void setColors(){
-        UIManager.put("ComboBox.background", new Color(167, 199, 197));
-        UIManager.put("JTextField.background", new Color(167, 199, 197));
-        UIManager.put("ComboBox.selectionBackground", new Color(167, 199, 197));
-        UIManager.put("ComboBox.selectionForeground", new Color(224, 224, 255));
+        UIManager.put("ComboBox.background", new Color(248, 248, 255));
+        UIManager.put("JTextField.background", new Color(248, 248, 255));
+        UIManager.put("ComboBox.selectionBackground", new Color(248, 248, 255));
+        UIManager.put("ComboBox.selectionForeground", new Color(21, 21, 21));
         UIManager.put("ComboBox.foreground", new Color(21, 21, 21));
-        UIManager.put("Spinner.background", new Color(167, 199, 197));
-        UIManager.put("Spinner.foreground", new Color(224, 224, 255));
+        UIManager.put("Spinner.background", new Color(248, 248, 255));
+        UIManager.put("Spinner.foreground", new Color(21, 21, 21));
     }
     
 }

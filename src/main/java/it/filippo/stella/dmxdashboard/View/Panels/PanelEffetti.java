@@ -27,14 +27,14 @@ import javax.swing.JTextField;
  *
  * @author Filippo
  */
-public class MainPanel extends javax.swing.JPanel implements MouseListener {
+public class PanelEffetti extends javax.swing.JPanel implements MouseListener {
     
     private Color c;
 
     /**
      * Creates new form MainPanel
      */
-    public MainPanel() {
+    public PanelEffetti() {
         this.initComponents();
         this.changeSpinnerColor(this.jSpinner1);
         this.jLabelColore.addMouseListener(this);
@@ -76,7 +76,7 @@ public class MainPanel extends javax.swing.JPanel implements MouseListener {
 
         jLabelColore.setBackground(new java.awt.Color(0, 0, 0));
         jLabelColore.setForeground(new java.awt.Color(248, 248, 255));
-        jLabelColore.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(167, 199, 197)));
+        jLabelColore.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(248, 248, 255)));
         jLabelColore.setOpaque(true);
 
         jLabel3.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
@@ -134,7 +134,7 @@ public class MainPanel extends javax.swing.JPanel implements MouseListener {
     public final void changeSpinnerColor(JSpinner spinner){
         Component c = spinner.getComponent(1);
         JTextField tf = ((JSpinner.DefaultEditor)this.jSpinner1.getEditor()).getTextField();
-        tf.setBackground(new Color(167, 199, 197));
+        tf.setBackground(new Color(248, 248, 255));
         tf.setForeground(new Color(21, 21, 21));
     }
     
