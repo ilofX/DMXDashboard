@@ -19,14 +19,14 @@ package it.filippo.stella.dmxdashboard.View.Dialog;
  *
  * @author Stella Filippo
  */
-public class WizardDialog extends javax.swing.JDialog {
+public class LightDialog extends javax.swing.JDialog {
 
     /**
-     * Creates new form WizardDialog
+     * Creates new form LightDialog
      * @param parent
      * @param modal
      */
-    public WizardDialog(java.awt.Frame parent, boolean modal) {
+    public LightDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
@@ -56,7 +56,7 @@ public class WizardDialog extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
 }
