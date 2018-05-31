@@ -37,6 +37,7 @@ public class Main {
         MainFrame mf = new MainFrame();
         PanelEffetti mp = new PanelEffetti();
         
+        
         //Controller Classes
         MenuController mc = new MenuController(mf,mp);
         
@@ -48,10 +49,10 @@ public class Main {
         UIManager.put("ComboBox.background", new Color(248, 248, 255));
         UIManager.put("JTextField.background", new Color(248, 248, 255));
         UIManager.put("ComboBox.selectionBackground", new Color(248, 248, 255));
-        UIManager.put("ComboBox.selectionForeground", new Color(21, 21, 21));
-        UIManager.put("ComboBox.foreground", new Color(21, 21, 21));
+        UIManager.put("ComboBox.selectionForeground", new Color(37, 50, 55));
+        UIManager.put("ComboBox.foreground", new Color(37, 50, 55));
         UIManager.put("Spinner.background", new Color(248, 248, 255));
-        UIManager.put("Spinner.foreground", new Color(21, 21, 21));
+        UIManager.put("Spinner.foreground", new Color(37, 50, 55));
     }
     
 }

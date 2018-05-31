@@ -15,6 +15,7 @@
  */
 package it.filippo.stella.dmxdashboard.Control;
 
+import it.filippo.stella.dmxdashboard.View.Dialog.ExitDialog;
 import it.filippo.stella.dmxdashboard.View.MainFrame;
 import it.filippo.stella.dmxdashboard.View.Panels.PanelEffetti;
 import java.awt.event.ActionEvent;
@@ -45,12 +46,16 @@ public class MenuController implements ActionListener{
                 this.mf.handleMenu(false);
             }
         }
-        if(e.getSource()==this.mf.getJButtonMain()){
+        else if(e.getSource()==this.mf.getJButtonMain()){
             this.mf.getJPanelMain().removeAll();
             this.mf.getJPanelMain().add(this.mp);
             this.mf.revalidate();
             this.mf.repaint();    
             this.mf.handleMenu(true);
+        }
+        else if(e.getSource()==this.mf.getjButtonExit()){
+            this.mf.handleMenu(true);
+            new ExitDialog(this.mf, true);
         }
     }
     

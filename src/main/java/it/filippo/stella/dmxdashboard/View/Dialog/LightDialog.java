@@ -15,6 +15,10 @@
  */
 package it.filippo.stella.dmxdashboard.View.Dialog;
 
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JSpinner;
+
 /**
  *
  * @author Stella Filippo
@@ -194,6 +198,29 @@ public class LightDialog extends javax.swing.JDialog {
     private javax.swing.JSpinner jSpinnerR;
     // End of variables declaration//GEN-END:variables
     // </editor-fold>
+    
+    public JButton getjButtonAnnulla() {
+        return this.jButtonAnnulla;
+    }
 
+    public JButton getjButtonConferma() {
+        return this.jButtonConferma;
+    }
+
+    public JComboBox<String> getjComboBoxTipo() {
+        return this.jComboBoxTipo;
+    }
+
+    public JSpinner getjSpinnerB() {
+        return this.jSpinnerB;
+    }
+
+    public JSpinner getjSpinnerG() {
+        return this.jSpinnerG;
+    }
+
+    public JSpinner getjSpinnerR() {
+        return this.jSpinnerR;
+    }
 
 }
