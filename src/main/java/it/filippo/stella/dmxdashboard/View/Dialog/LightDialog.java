@@ -28,7 +28,10 @@ public class LightDialog extends javax.swing.JDialog {
      */
     public LightDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
-        initComponents();
+        this.initComponents();
+        this.setLocationRelativeTo(parent);
+        this.pack();
+        this.setVisible(true);
     }
 
     /**
@@ -40,23 +43,157 @@ public class LightDialog extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jComboBoxTipo = new javax.swing.JComboBox<>();
+        jLabel2 = new javax.swing.JLabel();
+        jSpinnerR = new javax.swing.JSpinner();
+        jLabel3 = new javax.swing.JLabel();
+        jSpinnerG = new javax.swing.JSpinner();
+        jLabel4 = new javax.swing.JLabel();
+        jSpinnerB = new javax.swing.JSpinner();
+        jButtonConferma = new javax.swing.JButton();
+        jButtonAnnulla = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Lampada");
+
+        jPanel1.setBackground(new java.awt.Color(37, 50, 55));
+
+        jLabel1.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(248, 248, 255));
+        jLabel1.setText("Tipo Lampada");
+
+        jComboBoxTipo.setMaximumSize(new java.awt.Dimension(180, 30));
+        jComboBoxTipo.setMinimumSize(new java.awt.Dimension(180, 30));
+        jComboBoxTipo.setPreferredSize(new java.awt.Dimension(180, 30));
+
+        jLabel2.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(248, 248, 255));
+        jLabel2.setText("Canale G");
+
+        jSpinnerR.setBorder(null);
+        jSpinnerR.setMaximumSize(new java.awt.Dimension(120, 22));
+        jSpinnerR.setMinimumSize(new java.awt.Dimension(120, 22));
+        jSpinnerR.setPreferredSize(new java.awt.Dimension(120, 22));
+
+        jLabel3.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(248, 248, 255));
+        jLabel3.setText("Canale R");
+
+        jSpinnerG.setBorder(null);
+        jSpinnerG.setMaximumSize(new java.awt.Dimension(120, 22));
+        jSpinnerG.setMinimumSize(new java.awt.Dimension(120, 22));
+        jSpinnerG.setPreferredSize(new java.awt.Dimension(120, 22));
+
+        jLabel4.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(248, 248, 255));
+        jLabel4.setText("Canale B");
+
+        jSpinnerB.setBorder(null);
+        jSpinnerB.setMaximumSize(new java.awt.Dimension(120, 22));
+        jSpinnerB.setMinimumSize(new java.awt.Dimension(120, 22));
+        jSpinnerB.setPreferredSize(new java.awt.Dimension(120, 22));
+
+        jButtonConferma.setBackground(new java.awt.Color(37, 50, 55));
+        jButtonConferma.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        jButtonConferma.setForeground(new java.awt.Color(248, 248, 255));
+        jButtonConferma.setText("Conferma");
+        jButtonConferma.setBorder(null);
+        jButtonConferma.setFocusPainted(false);
+
+        jButtonAnnulla.setBackground(new java.awt.Color(37, 50, 55));
+        jButtonAnnulla.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        jButtonAnnulla.setForeground(new java.awt.Color(248, 248, 255));
+        jButtonAnnulla.setText("Annulla");
+        jButtonAnnulla.setBorder(null);
+        jButtonAnnulla.setFocusPainted(false);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jComboBoxTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jSpinnerR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jSpinnerG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jSpinnerB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButtonConferma, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonAnnulla, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(32, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jComboBoxTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(22, 22, 22)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel3)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addComponent(jSpinnerR, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel2)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addComponent(jSpinnerG, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jSpinnerB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(22, 22, 22)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButtonConferma, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
+                    .addComponent(jButtonAnnulla, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(27, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    
+    //Variables declaration
+    // <editor-fold defaultstate="collapsed" desc="Varaibles declaration"> 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonAnnulla;
+    private javax.swing.JButton jButtonConferma;
+    private javax.swing.JComboBox<String> jComboBoxTipo;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JSpinner jSpinnerB;
+    private javax.swing.JSpinner jSpinnerG;
+    private javax.swing.JSpinner jSpinnerR;
     // End of variables declaration//GEN-END:variables
+    // </editor-fold>
+
+
 }
