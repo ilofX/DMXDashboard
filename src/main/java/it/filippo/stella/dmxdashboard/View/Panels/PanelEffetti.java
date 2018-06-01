@@ -62,6 +62,8 @@ public class PanelEffetti extends javax.swing.JPanel implements MouseListener {
         setMinimumSize(new java.awt.Dimension(800, 570));
         setPreferredSize(new java.awt.Dimension(800, 570));
 
+        jComboBox1.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Solid Color", "Rainbow Effect", "Random Colors", "Jump Effect", "Running Lights", "Fading Lights", "Rainbow Jump", "Supercar Visor", "Automatic Mode" }));
         jComboBox1.setBorder(null);
         jComboBox1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jComboBox1.setMinimumSize(new java.awt.Dimension(200, 30));
@@ -84,6 +86,7 @@ public class PanelEffetti extends javax.swing.JPanel implements MouseListener {
         jLabel3.setForeground(new java.awt.Color(248, 248, 255));
         jLabel3.setText("Delay");
 
+        jSpinner1.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
         jSpinner1.setModel(new javax.swing.SpinnerNumberModel(10, 10, null, 5));
         jSpinner1.setBorder(null);
         jSpinner1.setMinimumSize(new java.awt.Dimension(100, 20));

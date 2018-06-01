@@ -16,12 +16,8 @@
 package it.filippo.stella.dmxdashboard.View.Panels;
 
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import javax.swing.JColorChooser;
-import javax.swing.JSpinner;
-import javax.swing.JTextField;
 
 /**
  *
@@ -36,8 +32,6 @@ public class PanelLuci extends javax.swing.JPanel implements MouseListener {
      */
     public PanelLuci() {
         this.initComponents();
-        this.changeSpinnerColor(this.jSpinner1);
-        this.jLabelColore.addMouseListener(this);
     }
 
     /**
@@ -49,115 +43,104 @@ public class PanelLuci extends javax.swing.JPanel implements MouseListener {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabelColore = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jSpinner1 = new javax.swing.JSpinner();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jPanelLuci = new javax.swing.JPanel();
+        jButtonRimuovi = new javax.swing.JButton();
+        jButtonModifica = new javax.swing.JButton();
+        jButtonAggiungi = new javax.swing.JButton();
 
-        setBackground(new java.awt.Color(21, 21, 21));
+        setBackground(new java.awt.Color(37, 50, 55));
         setForeground(new java.awt.Color(248, 248, 255));
         setMinimumSize(new java.awt.Dimension(800, 570));
         setPreferredSize(new java.awt.Dimension(800, 570));
 
-        jComboBox1.setBorder(null);
-        jComboBox1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jComboBox1.setMinimumSize(new java.awt.Dimension(200, 30));
-        jComboBox1.setPreferredSize(new java.awt.Dimension(200, 30));
+        jScrollPane1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(248, 248, 255)));
+        jScrollPane1.setMinimumSize(new java.awt.Dimension(350, 534));
+        jScrollPane1.setName(""); // NOI18N
+        jScrollPane1.setPreferredSize(new java.awt.Dimension(350, 534));
 
-        jLabel1.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(248, 248, 255));
-        jLabel1.setText("Effetti");
+        jPanelLuci.setBackground(new java.awt.Color(37, 50, 55));
+        jPanelLuci.setForeground(new java.awt.Color(248, 248, 255));
+        jPanelLuci.setLayout(new javax.swing.BoxLayout(jPanelLuci, javax.swing.BoxLayout.Y_AXIS));
+        jScrollPane1.setViewportView(jPanelLuci);
 
-        jLabel2.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(248, 248, 255));
-        jLabel2.setText("Colore");
+        jButtonRimuovi.setBackground(new java.awt.Color(37, 50, 55));
+        jButtonRimuovi.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        jButtonRimuovi.setForeground(new java.awt.Color(248, 248, 255));
+        jButtonRimuovi.setText("Rimuovi Lampada");
+        jButtonRimuovi.setBorder(null);
+        jButtonRimuovi.setBorderPainted(false);
+        jButtonRimuovi.setFocusPainted(false);
+        jButtonRimuovi.setMaximumSize(new java.awt.Dimension(170, 40));
+        jButtonRimuovi.setMinimumSize(new java.awt.Dimension(170, 40));
+        jButtonRimuovi.setPreferredSize(new java.awt.Dimension(170, 40));
 
-        jLabelColore.setBackground(new java.awt.Color(0, 0, 0));
-        jLabelColore.setForeground(new java.awt.Color(248, 248, 255));
-        jLabelColore.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(248, 248, 255)));
-        jLabelColore.setOpaque(true);
+        jButtonModifica.setBackground(new java.awt.Color(37, 50, 55));
+        jButtonModifica.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        jButtonModifica.setForeground(new java.awt.Color(248, 248, 255));
+        jButtonModifica.setText("Modifica Lampada");
+        jButtonModifica.setBorder(null);
+        jButtonModifica.setBorderPainted(false);
+        jButtonModifica.setFocusPainted(false);
+        jButtonModifica.setMaximumSize(new java.awt.Dimension(170, 40));
+        jButtonModifica.setMinimumSize(new java.awt.Dimension(170, 40));
+        jButtonModifica.setPreferredSize(new java.awt.Dimension(170, 40));
 
-        jLabel3.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(248, 248, 255));
-        jLabel3.setText("Delay");
-
-        jSpinner1.setModel(new javax.swing.SpinnerNumberModel(10, 10, null, 1));
-        jSpinner1.setBorder(null);
-        jSpinner1.setMinimumSize(new java.awt.Dimension(100, 20));
-        jSpinner1.setPreferredSize(new java.awt.Dimension(100, 20));
+        jButtonAggiungi.setBackground(new java.awt.Color(37, 50, 55));
+        jButtonAggiungi.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        jButtonAggiungi.setForeground(new java.awt.Color(248, 248, 255));
+        jButtonAggiungi.setText("Aggiungi Lampada");
+        jButtonAggiungi.setBorder(null);
+        jButtonAggiungi.setBorderPainted(false);
+        jButtonAggiungi.setFocusPainted(false);
+        jButtonAggiungi.setMaximumSize(new java.awt.Dimension(170, 40));
+        jButtonAggiungi.setMinimumSize(new java.awt.Dimension(170, 40));
+        jButtonAggiungi.setPreferredSize(new java.awt.Dimension(170, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(63, 63, 63)
-                .addComponent(jLabel1)
+                .addGap(24, 24, 24)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabelColore, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jSpinner1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(462, Short.MAX_VALUE))
+                    .addComponent(jButtonModifica, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonRimuovi, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonAggiungi, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(238, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(58, 58, 58)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(19, 19, 19)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelColore, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(42, 42, 42)
-                        .addComponent(jLabel2)))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
-                .addContainerGap(325, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButtonAggiungi, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonModifica, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(22, 22, 22)
+                        .addComponent(jButtonRimuovi, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    
-    public final void changeSpinnerColor(JSpinner spinner){
-        Component c = spinner.getComponent(1);
-        JTextField tf = ((JSpinner.DefaultEditor)this.jSpinner1.getEditor()).getTextField();
-        tf.setBackground(new Color(248, 248, 255));
-        tf.setForeground(new Color(21, 21, 21));
-    }
-    
     // <editor-fold defaultstate="collapsed" desc="Variables declaration"> 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabelColore;
-    private javax.swing.JSpinner jSpinner1;
+    private javax.swing.JButton jButtonAggiungi;
+    private javax.swing.JButton jButtonModifica;
+    private javax.swing.JButton jButtonRimuovi;
+    private javax.swing.JPanel jPanelLuci;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
     // </editor-fold> 
     
     // <editor-fold defaultstate="collapsed" desc="Mouse Listener"> 
-    
     //Implementation of mouse listener for JColorChooser
     @Override
     public void mouseClicked(MouseEvent e) {
-        if(e.getSource()==this.jLabelColore){
-           this.c = JColorChooser.showDialog(this, "Scegli il colore", Color.BLACK);
-           this.jLabelColore.setBackground(this.c);
-        }
     }
     @Override
     public void mousePressed(MouseEvent e) {}

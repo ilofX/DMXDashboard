@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package it.filippo.stella.dmxdashboard.View.Dialog;
+package it.filippo.stella.dmxdashboard.View.Dialogs;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -93,7 +93,6 @@ public class ExitDialog extends javax.swing.JDialog implements ActionListener {
         setTitle("Uscita");
         setBackground(new java.awt.Color(21, 21, 21));
         setMinimumSize(new java.awt.Dimension(315, 185));
-        setPreferredSize(new java.awt.Dimension(315, 185));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 closeDialog(evt);

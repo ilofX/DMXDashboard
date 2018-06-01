@@ -15,9 +15,13 @@
  */
 package it.filippo.stella.dmxdashboard.Control;
 
-import it.filippo.stella.dmxdashboard.View.Dialog.ExitDialog;
+import it.filippo.stella.dmxdashboard.View.Dialogs.ExitDialog;
+import it.filippo.stella.dmxdashboard.View.Dialogs.LightDialog;
+import it.filippo.stella.dmxdashboard.View.Dialogs.WizardDialog;
 import it.filippo.stella.dmxdashboard.View.MainFrame;
+import it.filippo.stella.dmxdashboard.View.Panels.PanelConfigurazione;
 import it.filippo.stella.dmxdashboard.View.Panels.PanelEffetti;
+import it.filippo.stella.dmxdashboard.View.Panels.PanelLuci;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -29,10 +33,18 @@ public class MenuController implements ActionListener{
 
     private final MainFrame mf;
     private final PanelEffetti mp;
+    private final PanelLuci pl;
+    private final PanelConfigurazione pc;
+    private final LightDialog ld;
+    private final WizardDialog wd;
 
-    public MenuController(MainFrame mf, PanelEffetti mp) {
+    public MenuController(MainFrame mf, PanelEffetti mp, PanelLuci pl, PanelConfigurazione pc, LightDialog ld, WizardDialog wd) {
         this.mf = mf;
         this.mp = mp;
+        this.pl = pl;
+        this.pc = pc;
+        this.ld = ld;
+        this.wd = wd;
         this.mf.setMenuListener(this);
     }
     
@@ -52,6 +64,25 @@ public class MenuController implements ActionListener{
             this.mf.revalidate();
             this.mf.repaint();    
             this.mf.handleMenu(true);
+        }
+        else if(e.getSource()==this.mf.getjButtonConfLight()){
+            this.mf.getJPanelMain().removeAll();
+            this.mf.getJPanelMain().add(this.pl);
+            this.mf.revalidate();
+            this.mf.repaint();    
+            this.mf.handleMenu(true);
+        }
+        else if(e.getSource()==this.mf.getjButtonAppConfig()){
+            this.mf.getJPanelMain().removeAll();
+            this.mf.getJPanelMain().add(this.pc);
+            this.mf.revalidate();
+            this.mf.repaint();    
+            this.mf.handleMenu(true);
+        }
+        else if(e.getSource()==this.mf.getjButtonWizard()){
+            this.mf.handleMenu(true);  
+            this.wd.setLocationRelativeTo(this.mf);
+            this.wd.setVisible(true);
         }
         else if(e.getSource()==this.mf.getjButtonExit()){
             this.mf.handleMenu(true);

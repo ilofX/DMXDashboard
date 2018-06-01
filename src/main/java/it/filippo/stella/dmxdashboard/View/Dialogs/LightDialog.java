@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package it.filippo.stella.dmxdashboard.View.Dialog;
+package it.filippo.stella.dmxdashboard.View.Dialogs;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -35,7 +35,6 @@ public class LightDialog extends javax.swing.JDialog {
         this.initComponents();
         this.setLocationRelativeTo(parent);
         this.pack();
-        this.setVisible(true);
     }
 
     /**

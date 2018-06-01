@@ -15,31 +15,44 @@
  */
 package it.filippo.stella.dmxdashboard.View.Panels;
 
+import it.filippo.stella.dmxdashboard.View.Dialogs.DevicesDialog;
+import it.filippo.stella.dmxdashboard.View.MainFrame;
 import java.awt.Color;
-import java.awt.Component;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import javax.swing.JColorChooser;
-import javax.swing.JSpinner;
-import javax.swing.JTextField;
+import java.util.regex.Pattern;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 /**
  *
  * @author Filippo
+ * @version 1.0
  */
-public class PanelConfigurazione extends javax.swing.JPanel implements MouseListener {
+public class PanelConfigurazione extends javax.swing.JPanel implements MouseListener,ActionListener,DocumentListener {
     
     private Color c;
+    private final String _255 = "(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)";
+    private final Pattern p = Pattern.compile( "^(?:" + this._255 + "\\.){3}" + this._255 + "$");
+    private final DevicesDialog dd;
+    private final MainFrame mf;
 
-    /**
-     * Creates new form MainPanel
-     */
-    public PanelConfigurazione() {
+    
+    public PanelConfigurazione(MainFrame mf, DevicesDialog dd) {
         this.initComponents();
-        this.changeSpinnerColor(this.jSpinner1);
-        this.jLabelColore.addMouseListener(this);
+        this.dd = dd;
+        this.mf = mf;
+        this.jTextFieldFile.addMouseListener(this);
+        this.jButtonDispositivi.addActionListener(this);
+        this.jTextFieldIP.getDocument().addDocumentListener(this);
     }
 
+    private void changeConfiguration(){
+        this.jFileChooser1.showSaveDialog(this);
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -49,114 +62,199 @@ public class PanelConfigurazione extends javax.swing.JPanel implements MouseList
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jFileChooser1 = new javax.swing.JFileChooser();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabelColore = new javax.swing.JLabel();
+        jSpinnerPortaScheda = new javax.swing.JSpinner();
+        jSeparator1 = new javax.swing.JSeparator();
         jLabel3 = new javax.swing.JLabel();
-        jSpinner1 = new javax.swing.JSpinner();
+        jTextFieldFile = new javax.swing.JTextField();
+        jSeparator2 = new javax.swing.JSeparator();
+        jLabel4 = new javax.swing.JLabel();
+        jSpinnerPorta = new javax.swing.JSpinner();
+        jCheckBox1 = new javax.swing.JCheckBox();
+        jCheckBox2 = new javax.swing.JCheckBox();
+        jCheckBox3 = new javax.swing.JCheckBox();
+        jCheckBox4 = new javax.swing.JCheckBox();
+        jButtonDispositivi = new javax.swing.JButton();
+        jTextFieldIP = new javax.swing.JTextField();
 
-        setBackground(new java.awt.Color(21, 21, 21));
+        setBackground(new java.awt.Color(37, 50, 55));
         setForeground(new java.awt.Color(248, 248, 255));
         setMinimumSize(new java.awt.Dimension(800, 570));
         setPreferredSize(new java.awt.Dimension(800, 570));
 
-        jComboBox1.setBorder(null);
-        jComboBox1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jComboBox1.setMinimumSize(new java.awt.Dimension(200, 30));
-        jComboBox1.setPreferredSize(new java.awt.Dimension(200, 30));
-
-        jLabel1.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(248, 248, 255));
-        jLabel1.setText("Effetti");
+        jLabel1.setText("Indirizzo IP");
 
         jLabel2.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(248, 248, 255));
-        jLabel2.setText("Colore");
+        jLabel2.setText("Porta ModbusTCP");
 
-        jLabelColore.setBackground(new java.awt.Color(0, 0, 0));
-        jLabelColore.setForeground(new java.awt.Color(248, 248, 255));
-        jLabelColore.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(248, 248, 255)));
-        jLabelColore.setOpaque(true);
+        jSpinnerPortaScheda.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        jSpinnerPortaScheda.setModel(new javax.swing.SpinnerNumberModel(502, 1, 65535, 1));
+        jSpinnerPortaScheda.setBorder(null);
+        jSpinnerPortaScheda.setPreferredSize(new java.awt.Dimension(150, 25));
+
+        jSeparator1.setBackground(new java.awt.Color(92, 107, 99));
 
         jLabel3.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(248, 248, 255));
-        jLabel3.setText("Delay");
+        jLabel3.setText("File di configurazione");
+        jLabel3.setPreferredSize(new java.awt.Dimension(150, 17));
 
-        jSpinner1.setModel(new javax.swing.SpinnerNumberModel(10, 10, null, 1));
-        jSpinner1.setBorder(null);
-        jSpinner1.setMinimumSize(new java.awt.Dimension(100, 20));
-        jSpinner1.setPreferredSize(new java.awt.Dimension(100, 20));
+        jTextFieldFile.setEditable(false);
+        jTextFieldFile.setBackground(new java.awt.Color(248, 248, 255));
+        jTextFieldFile.setFont(new java.awt.Font("Ubuntu", 0, 12)); // NOI18N
+        jTextFieldFile.setForeground(new java.awt.Color(21, 21, 21));
+        jTextFieldFile.setBorder(null);
+
+        jSeparator2.setBackground(new java.awt.Color(92, 107, 99));
+
+        jLabel4.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(248, 248, 255));
+        jLabel4.setText("Porta Remote");
+
+        jSpinnerPorta.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
+        jSpinnerPorta.setModel(new javax.swing.SpinnerNumberModel(1, 1, 65535, 1));
+        jSpinnerPorta.setBorder(null);
+
+        jCheckBox1.setBackground(new java.awt.Color(37, 50, 55));
+        jCheckBox1.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        jCheckBox1.setForeground(new java.awt.Color(248, 248, 255));
+        jCheckBox1.setText("Utilizza connessione sicura (SSL/TLS)");
+        jCheckBox1.setBorder(null);
+
+        jCheckBox2.setBackground(new java.awt.Color(37, 50, 55));
+        jCheckBox2.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        jCheckBox2.setForeground(new java.awt.Color(248, 248, 255));
+        jCheckBox2.setText("Utilizza connessione sicura (SSL/TLS)");
+        jCheckBox2.setBorder(null);
+
+        jCheckBox3.setBackground(new java.awt.Color(37, 50, 55));
+        jCheckBox3.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        jCheckBox3.setForeground(new java.awt.Color(248, 248, 255));
+        jCheckBox3.setText("Connetti automaticamente all'apertura del programma");
+        jCheckBox3.setBorder(null);
+
+        jCheckBox4.setBackground(new java.awt.Color(37, 50, 55));
+        jCheckBox4.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        jCheckBox4.setForeground(new java.awt.Color(248, 248, 255));
+        jCheckBox4.setText("Avvia automaticamente all'apertura del programma");
+        jCheckBox4.setBorder(null);
+
+        jButtonDispositivi.setBackground(new java.awt.Color(37, 50, 55));
+        jButtonDispositivi.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        jButtonDispositivi.setForeground(new java.awt.Color(248, 248, 255));
+        jButtonDispositivi.setText("Gestisci dispositivi accoppiati");
+        jButtonDispositivi.setBorder(null);
+
+        jTextFieldIP.setBackground(new java.awt.Color(248, 248, 255));
+        jTextFieldIP.setForeground(new java.awt.Color(21, 21, 21));
+        jTextFieldIP.setBorder(null);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(63, 63, 63)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addGap(77, 77, 77)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabelColore, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jSpinner1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(462, Short.MAX_VALUE))
+                            .addComponent(jSeparator2, javax.swing.GroupLayout.DEFAULT_SIZE, 646, Short.MAX_VALUE)
+                            .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jCheckBox4)
+                            .addComponent(jCheckBox3)
+                            .addComponent(jCheckBox2)
+                            .addComponent(jCheckBox1)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jSpinnerPorta, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(77, 77, 77))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jSpinnerPortaScheda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextFieldIP, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jTextFieldFile, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jButtonDispositivi, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(58, 58, 58)
+                .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(19, 19, 19)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelColore, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(42, 42, 42)
-                        .addComponent(jLabel2)))
+                    .addComponent(jTextFieldIP, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
-                .addContainerGap(325, Short.MAX_VALUE))
+                    .addComponent(jLabel2)
+                    .addComponent(jSpinnerPortaScheda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jCheckBox1)
+                .addGap(18, 18, 18)
+                .addComponent(jCheckBox3)
+                .addGap(18, 18, 18)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldFile, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jSpinnerPorta, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jCheckBox2)
+                .addGap(18, 18, 18)
+                .addComponent(jCheckBox4)
+                .addGap(18, 18, 18)
+                .addComponent(jButtonDispositivi, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(144, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    
-    public final void changeSpinnerColor(JSpinner spinner){
-        Component c = spinner.getComponent(1);
-        JTextField tf = ((JSpinner.DefaultEditor)this.jSpinner1.getEditor()).getTextField();
-        tf.setBackground(new Color(248, 248, 255));
-        tf.setForeground(new Color(21, 21, 21));
-    }
-    
     // <editor-fold defaultstate="collapsed" desc="Variables declaration"> 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JButton jButtonDispositivi;
+    private javax.swing.JCheckBox jCheckBox1;
+    private javax.swing.JCheckBox jCheckBox2;
+    private javax.swing.JCheckBox jCheckBox3;
+    private javax.swing.JCheckBox jCheckBox4;
+    private javax.swing.JFileChooser jFileChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabelColore;
-    private javax.swing.JSpinner jSpinner1;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSpinner jSpinnerPorta;
+    private javax.swing.JSpinner jSpinnerPortaScheda;
+    private javax.swing.JTextField jTextFieldFile;
+    private javax.swing.JTextField jTextFieldIP;
     // End of variables declaration//GEN-END:variables
     // </editor-fold> 
     
-    // <editor-fold defaultstate="collapsed" desc="Mouse Listener"> 
-    
+    // <editor-fold defaultstate="collapsed" desc="Mouse Listener">   
     //Implementation of mouse listener for JColorChooser
     @Override
     public void mouseClicked(MouseEvent e) {
-        if(e.getSource()==this.jLabelColore){
-           this.c = JColorChooser.showDialog(this, "Scegli il colore", Color.BLACK);
-           this.jLabelColore.setBackground(this.c);
+        if (e.getSource()==this.jTextFieldFile){
+            this.changeConfiguration();
         }
     }
     @Override
@@ -168,4 +266,26 @@ public class PanelConfigurazione extends javax.swing.JPanel implements MouseList
     @Override
     public void mouseExited(MouseEvent e) {}
     // </editor-fold> 
+
+    // <editor-fold defaultstate="collapsed" desc="Action Listener">
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if(e.getSource()==this.jButtonDispositivi){
+            this.dd.setLocationRelativeTo(this.mf);
+            this.dd.setVisible(true);
+        }
+    }
+    // </editor-fold> 
+
+    // <editor-fold defaultstate="collapsed" desc="Document Listener">
+    @Override
+    public void insertUpdate(DocumentEvent e) {
+        
+    }
+    @Override
+    public void removeUpdate(DocumentEvent e) {}
+    @Override
+    public void changedUpdate(DocumentEvent e) {}
+    // </editor-fold> 
+    
 }

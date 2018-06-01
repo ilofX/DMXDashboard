@@ -15,7 +15,7 @@
  */
 package it.filippo.stella.dmxdashboard.View;
 
-import it.filippo.stella.dmxdashboard.View.Dialog.ExitDialog;
+import it.filippo.stella.dmxdashboard.View.Dialogs.ExitDialog;
 import java.awt.Dimension;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
@@ -304,7 +304,7 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
             .addGroup(jLayeredPane1Layout.createSequentialGroup()
                 .addComponent(jPanelHead, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(jPanelMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 550, Short.MAX_VALUE)
+                .addComponent(jPanelMenu, javax.swing.GroupLayout.DEFAULT_SIZE, 570, Short.MAX_VALUE)
                 .addGap(0, 0, 0)
                 .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jPanelServer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
