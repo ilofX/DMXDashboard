@@ -52,7 +52,7 @@ public class PanelConfigurazione extends javax.swing.JPanel implements MouseList
         this.dd = dd;
         this.mf = mf;
         this.IPValidator = new InetAddressValidator();
-        this.jTextFieldFile.addMouseListener(this);
+        //this.jTextFieldFile.addMouseListener(this);
         this.jButtonDispositivi.addActionListener(this);
         this.jTextFieldIP.addFocusListener(this);
     }
