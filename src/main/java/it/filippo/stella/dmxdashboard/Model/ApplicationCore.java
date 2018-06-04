@@ -15,6 +15,7 @@
  */
 package it.filippo.stella.dmxdashboard.Model;
 
+import it.filippo.stella.dmxdashboard.Model.Utils.StartChannelComparator;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -22,6 +23,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import static java.lang.System.exit;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -34,7 +37,7 @@ import org.json.JSONObject;
  * @version 1.0
  */
 
-public class SaveManager {
+public class ApplicationCore {
     
     private File saveFile;
     private String IP="0/0/0/0";
@@ -45,7 +48,7 @@ public class SaveManager {
     private boolean firstOpen=false;   
     private boolean isDefaultLocation=true;
     
-    public SaveManager() {
+    public ApplicationCore() {
         this.al=new ArrayList<>(); 
         try { 
             if((System.getProperty("os.name").toLowerCase()).contains("windows")){
@@ -84,7 +87,7 @@ public class SaveManager {
                 exit(6);
             }
         } catch (IOException ex) {
-            Logger.getLogger(SaveManager.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ApplicationCore.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
@@ -104,7 +107,7 @@ public class SaveManager {
             this.pr.close();
         } catch (FileNotFoundException ex) {
             ris=false;
-            Logger.getLogger(SaveManager.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ApplicationCore.class.getName()).log(Level.SEVERE, null, ex);
         }
         return ris;
     }
@@ -118,11 +121,22 @@ public class SaveManager {
     }
     
     private JSONArray createLightArray(){
-        return new JSONArray(this.al);
+        JSONArray ris = new JSONArray();
+        Iterator<Luce> i = this.al.iterator();
+        while(i.hasNext()){
+            Luce l = i.next();
+            ris.put(l.createJSONObject());
+        }
+        return ris;
     }
     
     private void restoreLightArray(JSONArray lights){
-        
+        Iterator elabora = lights.toList().iterator();
+        while(elabora.hasNext()){
+            JSONObject obj = (JSONObject) elabora.next();                    
+            Luce l = new Luce(obj.getInt("Start"), obj.getInt("nCanali"), obj.getString("Tipo"), obj.getInt("CanaleR"), obj.getInt("CanaleG"), obj.getInt("CanaleB"));
+            this.al.add(l);
+        }
     }
     
     public boolean doRestore(){
@@ -141,16 +155,16 @@ public class SaveManager {
             this.restoreLightArray(save.getJSONArray("Lights"));
         } catch (FileNotFoundException ex) {
             ris = false;
-            Logger.getLogger(SaveManager.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ApplicationCore.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
             ris = false;
-            Logger.getLogger(SaveManager.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ApplicationCore.class.getName()).log(Level.SEVERE, null, ex);
         }
         return ris;
     }
 
     public String getIP() {
-        return IP;
+        return this.IP;
     }
 
     public void setIP(String IP) {
@@ -158,11 +172,59 @@ public class SaveManager {
     }
 
     public Integer getPort() {
-        return Port;
+        return this.Port;
     }
 
     public void setPort(Integer Port) {
         this.Port = Port;
     }
+
+    public void addLuce(Luce l){
+        this.al.add(l);
+        Collections.sort(this.al, new StartChannelComparator());
+    }
     
+    public Luce getLuce(Integer i){
+        return this.al.get(i.intValue());
+    }
+    
+    public void removeLuce(Integer i){
+        this.al.remove(i.intValue());
+        Collections.sort(this.al, new StartChannelComparator());
+    }
+    
+    public void sortArray(){
+        Collections.sort(this.al, new StartChannelComparator());
+    }
+    
+    public Integer getLastChannel(){
+        Integer ris=0;
+        if(this.al.size()>0){
+            if((this.al.get(0).getStart())>1){
+                ris=1;
+            }
+            else{
+                ris=(this.al.get(this.al.size()-1)).getStart()+(this.al.get(this.al.size()-1)).getnCanali();
+            }   
+        }
+        return ris;
+    }
+    
+    public Integer getFirstChannel(){
+        Integer ris = 0;
+        if(this.al.size()>0){
+            ris=this.al.get(0).getStart();
+        }
+        return ris;
+    }
+    
+    public void editLuce(Integer i, Integer start, Integer nCanali, String tipo, Integer canaleR, Integer canaleG, Integer canaleB){
+        this.al.get(i).setTipo(tipo);
+        this.al.get(i).setStart(start);
+        this.al.get(i).setnCanali(nCanali);
+        this.al.get(i).setCanaleR(canaleR);
+        this.al.get(i).setCanaleG(canaleG);
+        this.al.get(i).setCanaleB(canaleB);
+    }
+     
 }

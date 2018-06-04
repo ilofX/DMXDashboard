@@ -22,14 +22,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JSpinner;
-import javax.swing.JTextField;
 import org.apache.commons.validator.routines.InetAddressValidator;
 
 /**
@@ -37,7 +34,7 @@ import org.apache.commons.validator.routines.InetAddressValidator;
  * @author Filippo
  * @version 1.0
  */
-public class PanelConfigurazione extends javax.swing.JPanel implements MouseListener,ActionListener,FocusListener {
+public class PanelConfigurazione extends javax.swing.JPanel implements ActionListener,FocusListener {
     
     private Color c;
     //private final String _255 = "(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)";
@@ -75,9 +72,6 @@ public class PanelConfigurazione extends javax.swing.JPanel implements MouseList
         jLabel2 = new javax.swing.JLabel();
         jSpinnerPortaScheda = new javax.swing.JSpinner();
         jSeparator1 = new javax.swing.JSeparator();
-        jLabel3 = new javax.swing.JLabel();
-        jTextFieldFile = new javax.swing.JTextField();
-        jSeparator2 = new javax.swing.JSeparator();
         jLabel4 = new javax.swing.JLabel();
         jSpinnerPorta = new javax.swing.JSpinner();
         jCheckBox1 = new javax.swing.JCheckBox();
@@ -106,19 +100,6 @@ public class PanelConfigurazione extends javax.swing.JPanel implements MouseList
         jSpinnerPortaScheda.setPreferredSize(new java.awt.Dimension(150, 25));
 
         jSeparator1.setBackground(new java.awt.Color(92, 107, 99));
-
-        jLabel3.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(248, 248, 255));
-        jLabel3.setText("File di configurazione");
-        jLabel3.setPreferredSize(new java.awt.Dimension(150, 17));
-
-        jTextFieldFile.setEditable(false);
-        jTextFieldFile.setBackground(new java.awt.Color(248, 248, 255));
-        jTextFieldFile.setFont(new java.awt.Font("Ubuntu", 0, 12)); // NOI18N
-        jTextFieldFile.setForeground(new java.awt.Color(21, 21, 21));
-        jTextFieldFile.setBorder(null);
-
-        jSeparator2.setBackground(new java.awt.Color(92, 107, 99));
 
         jLabel4.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(248, 248, 255));
@@ -171,8 +152,7 @@ public class PanelConfigurazione extends javax.swing.JPanel implements MouseList
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jSeparator2, javax.swing.GroupLayout.DEFAULT_SIZE, 646, Short.MAX_VALUE)
-                            .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 646, Short.MAX_VALUE)
                             .addComponent(jCheckBox4)
                             .addComponent(jCheckBox3)
                             .addComponent(jCheckBox2)
@@ -192,10 +172,6 @@ public class PanelConfigurazione extends javax.swing.JPanel implements MouseList
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jSpinnerPortaScheda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jTextFieldIP, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jTextFieldFile, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jButtonDispositivi, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
@@ -218,12 +194,6 @@ public class PanelConfigurazione extends javax.swing.JPanel implements MouseList
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldFile, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jSpinnerPorta, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
@@ -232,7 +202,7 @@ public class PanelConfigurazione extends javax.swing.JPanel implements MouseList
                 .addComponent(jCheckBox4)
                 .addGap(18, 18, 18)
                 .addComponent(jButtonDispositivi, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(144, Short.MAX_VALUE))
+                .addContainerGap(207, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -246,13 +216,10 @@ public class PanelConfigurazione extends javax.swing.JPanel implements MouseList
     private javax.swing.JFileChooser jFileChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSpinner jSpinnerPorta;
     private javax.swing.JSpinner jSpinnerPortaScheda;
-    private javax.swing.JTextField jTextFieldFile;
     private javax.swing.JTextField jTextFieldIP;
     // End of variables declaration//GEN-END:variables
     // </editor-fold> 
@@ -280,10 +247,6 @@ public class PanelConfigurazione extends javax.swing.JPanel implements MouseList
     public JSpinner getjSpinnerPorta() {
         return this.jSpinnerPorta;
     }
-
-    public JTextField getjTextFieldFile() {
-        return this.jTextFieldFile;
-    }
         
     public InetAddress getIPAddress() throws UnknownHostException {
         return InetAddress.getByName(this.jTextFieldIP.getText().trim());
@@ -292,24 +255,6 @@ public class PanelConfigurazione extends javax.swing.JPanel implements MouseList
     public Integer getPort(){
         return (Integer) this.jSpinnerPortaScheda.getValue();
     }
-    
-    // <editor-fold defaultstate="collapsed" desc="Mouse Listener">   
-    //Implementation of mouse listener for JColorChooser
-    @Override
-    public void mouseClicked(MouseEvent e) {
-        if (e.getSource()==this.jTextFieldFile){
-            this.changeConfiguration();
-        }
-    }
-    @Override
-    public void mousePressed(MouseEvent e) {}
-    @Override
-    public void mouseReleased(MouseEvent e) {}
-    @Override
-    public void mouseEntered(MouseEvent e) {}
-    @Override
-    public void mouseExited(MouseEvent e) {}
-    // </editor-fold> 
 
     // <editor-fold defaultstate="collapsed" desc="Action Listener">
     @Override
