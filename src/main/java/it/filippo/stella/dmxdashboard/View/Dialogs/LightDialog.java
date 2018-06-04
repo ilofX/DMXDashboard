@@ -221,5 +221,5 @@ public class LightDialog extends javax.swing.JDialog {
     public JSpinner getjSpinnerR() {
         return this.jSpinnerR;
     }
-
+    
 }

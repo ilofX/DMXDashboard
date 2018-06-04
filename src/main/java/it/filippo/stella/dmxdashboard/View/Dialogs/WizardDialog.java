@@ -17,6 +17,7 @@ package it.filippo.stella.dmxdashboard.View.Dialogs;
 
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import javax.swing.JLabel;
 
 /**
  *
@@ -110,6 +111,15 @@ public class WizardDialog extends javax.swing.JDialog implements WindowListener 
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 
+    public JLabel getjLabel2() {
+        return this.jLabel2;
+    }
+
+    public JLabel getjLabel3() {
+        return this.jLabel3;
+    }
+    
+    // <editor-fold defaultstate="collapsed" desc="Window Listener"> 
     @Override
     public void windowOpened(WindowEvent e) {
         System.out.println("procedura di accoppiamento iniziata");
@@ -128,4 +138,6 @@ public class WizardDialog extends javax.swing.JDialog implements WindowListener 
     public void windowActivated(WindowEvent e) {}
     @Override
     public void windowDeactivated(WindowEvent e) {}
+    // </editor-fold>
+    
 }

@@ -399,7 +399,8 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
     public JPanel getjPanelMenu() {
         return this.jPanelMenu;
     }
-
+    
+    
     //Window listener Methods
     // <editor-fold defaultstate="collapsed" desc="Window Listener Methods">   
     @Override
@@ -448,7 +449,7 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
                         this.jPanelMenu.setPreferredSize(new Dimension(this.jPanelMenu.getWidth()-2, this.jPanelMenu.getHeight()));
                         this.jPanelMenu.revalidate();
                         this.jPanelMenu.repaint();
-                        this.sleep(5);
+                        this.sleep(2);
                     } catch (InterruptedException ex) {
                         Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -460,7 +461,7 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
                         this.jPanelMenu.setPreferredSize(new Dimension(this.jPanelMenu.getWidth()+2, this.jPanelMenu.getHeight()));
                         this.jPanelMenu.revalidate();
                         this.jPanelMenu.repaint();
-                        this.sleep(5);
+                        this.sleep(2);
                     } catch (InterruptedException ex) {
                         Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
                     }

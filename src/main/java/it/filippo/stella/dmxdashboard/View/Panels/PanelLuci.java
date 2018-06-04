@@ -18,6 +18,8 @@ package it.filippo.stella.dmxdashboard.View.Panels;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import javax.swing.JButton;
+import javax.swing.JPanel;
 
 /**
  *
@@ -102,14 +104,14 @@ public class PanelLuci extends javax.swing.JPanel implements MouseListener {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(24, 24, 24)
+                .addGap(77, 77, 77)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButtonModifica, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonRimuovi, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonAggiungi, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(238, Short.MAX_VALUE))
+                .addContainerGap(185, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -137,6 +139,22 @@ public class PanelLuci extends javax.swing.JPanel implements MouseListener {
     // End of variables declaration//GEN-END:variables
     // </editor-fold> 
     
+    public JButton getjButtonAggiungi() {
+        return this.jButtonAggiungi;
+    }
+
+    public JButton getjButtonModifica() {
+        return this.jButtonModifica;
+    }
+
+    public JButton getjButtonRimuovi() {
+        return this.jButtonRimuovi;
+    }
+
+    public JPanel getjPanelLuci() {
+        return this.jPanelLuci;
+    }
+    
     // <editor-fold defaultstate="collapsed" desc="Mouse Listener"> 
     //Implementation of mouse listener for JColorChooser
     @Override
@@ -151,4 +169,5 @@ public class PanelLuci extends javax.swing.JPanel implements MouseListener {
     @Override
     public void mouseExited(MouseEvent e) {}
     // </editor-fold> 
+    
 }

@@ -20,22 +20,29 @@ import it.filippo.stella.dmxdashboard.View.MainFrame;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.regex.Pattern;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JSpinner;
+import javax.swing.JTextField;
+import org.apache.commons.validator.routines.InetAddressValidator;
 
 /**
  *
  * @author Filippo
  * @version 1.0
  */
-public class PanelConfigurazione extends javax.swing.JPanel implements MouseListener,ActionListener,DocumentListener {
+public class PanelConfigurazione extends javax.swing.JPanel implements MouseListener,ActionListener,FocusListener {
     
     private Color c;
-    private final String _255 = "(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)";
-    private final Pattern p = Pattern.compile( "^(?:" + this._255 + "\\.){3}" + this._255 + "$");
+    //private final String _255 = "(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)";
+    //private final Pattern p = Pattern.compile( "^(?:" + this._255 + "\\.){3}" + this._255 + "$");
+    private final InetAddressValidator IPValidator;
     private final DevicesDialog dd;
     private final MainFrame mf;
 
@@ -44,9 +51,10 @@ public class PanelConfigurazione extends javax.swing.JPanel implements MouseList
         this.initComponents();
         this.dd = dd;
         this.mf = mf;
+        this.IPValidator = new InetAddressValidator();
         this.jTextFieldFile.addMouseListener(this);
         this.jButtonDispositivi.addActionListener(this);
-        this.jTextFieldIP.getDocument().addDocumentListener(this);
+        this.jTextFieldIP.addFocusListener(this);
     }
 
     private void changeConfiguration(){
@@ -249,6 +257,42 @@ public class PanelConfigurazione extends javax.swing.JPanel implements MouseList
     // End of variables declaration//GEN-END:variables
     // </editor-fold> 
     
+    public JButton getjButtonDispositivi() {
+        return this.jButtonDispositivi;
+    }
+
+    public JCheckBox getjCheckBox1() {
+        return this.jCheckBox1;
+    }
+
+    public JCheckBox getjCheckBox2() {
+        return this.jCheckBox2;
+    }
+
+    public JCheckBox getjCheckBox3() {
+        return this.jCheckBox3;
+    }
+
+    public JCheckBox getjCheckBox4() {
+        return this.jCheckBox4;
+    }
+
+    public JSpinner getjSpinnerPorta() {
+        return this.jSpinnerPorta;
+    }
+
+    public JTextField getjTextFieldFile() {
+        return this.jTextFieldFile;
+    }
+        
+    public InetAddress getIPAddress() throws UnknownHostException {
+        return InetAddress.getByName(this.jTextFieldIP.getText().trim());
+    }
+    
+    public Integer getPort(){
+        return (Integer) this.jSpinnerPortaScheda.getValue();
+    }
+    
     // <editor-fold defaultstate="collapsed" desc="Mouse Listener">   
     //Implementation of mouse listener for JColorChooser
     @Override
@@ -277,15 +321,24 @@ public class PanelConfigurazione extends javax.swing.JPanel implements MouseList
     }
     // </editor-fold> 
 
-    // <editor-fold defaultstate="collapsed" desc="Document Listener">
+    // <editor-fold defaultstate="collapsed" desc="Focus Listener">
     @Override
-    public void insertUpdate(DocumentEvent e) {
-        
+    public void focusGained(FocusEvent e) {
+        if(e.getSource()==this.jTextFieldIP && this.jTextFieldIP.getText().equals("INDIRIZZO IP NON VALIDO")){
+            this.jTextFieldIP.setForeground(new Color(21, 21, 21));
+            this.jTextFieldIP.setText("");
+            this.jTextFieldIP.requestFocus();
+        }
     }
     @Override
-    public void removeUpdate(DocumentEvent e) {}
-    @Override
-    public void changedUpdate(DocumentEvent e) {}
-    // </editor-fold> 
-    
+    public void focusLost(FocusEvent e) {
+        if(e.getSource()==this.jTextFieldIP && !this.jTextFieldIP.getText().equals("")){
+            if(!this.IPValidator.isValidInet4Address(this.jTextFieldIP.getText().trim())){
+                this.jTextFieldIP.setForeground(Color.RED);
+                this.jTextFieldIP.setText("INDIRIZZO IP NON VALIDO");
+            }
+        }
+    }
+    // </editor-fold>
+
 }

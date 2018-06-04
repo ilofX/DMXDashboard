@@ -15,6 +15,9 @@
  */
 package it.filippo.stella.dmxdashboard.View.Dialogs;
 
+import javax.swing.JButton;
+import javax.swing.JPanel;
+
 /**
  *
  * @author Filippo Stella
@@ -109,4 +112,13 @@ public class DevicesDialog extends javax.swing.JDialog {
     private javax.swing.JPanel jPanelDispositivi;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
+
+    public JButton getjButtonRimuovi() {
+        return this.jButtonRimuovi;
+    }
+
+    public JPanel getjPanelDispositivi() {
+        return this.jPanelDispositivi;
+    }
+    
 }

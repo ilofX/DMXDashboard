@@ -19,7 +19,10 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import javax.swing.JButton;
 import javax.swing.JColorChooser;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
 
@@ -106,7 +109,7 @@ public class PanelEffetti extends javax.swing.JPanel implements MouseListener {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(63, 63, 63)
+                .addGap(77, 77, 77)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
@@ -123,7 +126,7 @@ public class PanelEffetti extends javax.swing.JPanel implements MouseListener {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jLabelColore, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jSpinner1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
-                .addContainerGap(462, Short.MAX_VALUE))
+                .addContainerGap(448, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -168,6 +171,22 @@ public class PanelEffetti extends javax.swing.JPanel implements MouseListener {
     // End of variables declaration//GEN-END:variables
     // </editor-fold> 
     
+    public JButton getjButton1() {
+        return this.jButton1;
+    }
+
+    public JComboBox<String> getjComboBox1() {
+        return this.jComboBox1;
+    }
+
+    public JLabel getjLabelColore() {
+        return this.jLabelColore;
+    }
+
+    public JSpinner getjSpinner1() {
+        return this.jSpinner1;
+    }    
+    
     // <editor-fold defaultstate="collapsed" desc="Mouse Listener"> 
     
     //Implementation of mouse listener for JColorChooser
@@ -187,4 +206,5 @@ public class PanelEffetti extends javax.swing.JPanel implements MouseListener {
     @Override
     public void mouseExited(MouseEvent e) {}
     // </editor-fold> 
+
 }

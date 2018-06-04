@@ -23,6 +23,7 @@ import javax.swing.ActionMap;
 import javax.swing.InputMap;
 import javax.swing.JButton;
 import javax.swing.JComponent;
+import javax.swing.JLabel;
 import javax.swing.KeyStroke;
 
 /**
@@ -30,7 +31,7 @@ import javax.swing.KeyStroke;
  * @author Stella Filippo
  * @version 1.0
  */
-public class ExitDialog extends javax.swing.JDialog implements ActionListener {
+public class WarningDialog extends javax.swing.JDialog implements ActionListener {
 
     /**
      * A return status code - returned if Cancel button has been pressed
@@ -41,12 +42,14 @@ public class ExitDialog extends javax.swing.JDialog implements ActionListener {
      */
     public static final int RET_OK = 1;
 
+    private final String warningMessage;
+    
     /**
      * Creates new form ExitDialog
      * @param parent
      * @param modal
      */
-    public ExitDialog(java.awt.Frame parent, boolean modal) {
+    public WarningDialog(java.awt.Frame parent, boolean modal, String message) {
         super(parent, modal);
         this.initComponents();
 
@@ -61,9 +64,8 @@ public class ExitDialog extends javax.swing.JDialog implements ActionListener {
                 doClose(RET_CANCEL);
             }
         });
-        
-        this.jButtonSI.addActionListener(this);
-        this.jButtonNO.addActionListener(this);
+        this.warningMessage = message;
+        this.jButtonOK.addActionListener(this);
         this.pack();
         this.setLocationRelativeTo(parent);
         this.setVisible(true);
@@ -86,14 +88,14 @@ public class ExitDialog extends javax.swing.JDialog implements ActionListener {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jButtonSI = new javax.swing.JButton();
-        jButtonNO = new javax.swing.JButton();
+        jLabelWarning = new javax.swing.JLabel();
+        jButtonOK = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Uscita");
+        setTitle("Avviso");
         setBackground(new java.awt.Color(21, 21, 21));
-        setMinimumSize(new java.awt.Dimension(315, 185));
+        setMinimumSize(new java.awt.Dimension(400, 200));
+        setPreferredSize(new java.awt.Dimension(415, 220));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 closeDialog(evt);
@@ -106,58 +108,48 @@ public class ExitDialog extends javax.swing.JDialog implements ActionListener {
         jPanel1.setMaximumSize(new java.awt.Dimension(300, 150));
         jPanel1.setMinimumSize(new java.awt.Dimension(300, 150));
 
-        jLabel1.setBackground(new java.awt.Color(21, 21, 21));
-        jLabel1.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(248, 248, 255));
-        jLabel1.setText("Confermi di voler uscire?");
+        jLabelWarning.setBackground(new java.awt.Color(21, 21, 21));
+        jLabelWarning.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
+        jLabelWarning.setForeground(new java.awt.Color(248, 248, 255));
+        jLabelWarning.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelWarning.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        jButtonSI.setBackground(new java.awt.Color(37, 50, 55));
-        jButtonSI.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
-        jButtonSI.setForeground(new java.awt.Color(248, 248, 255));
-        jButtonSI.setText("SI");
-        jButtonSI.setBorder(null);
-        jButtonSI.setBorderPainted(false);
-        jButtonSI.setFocusPainted(false);
-
-        jButtonNO.setBackground(new java.awt.Color(37, 50, 55));
-        jButtonNO.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
-        jButtonNO.setForeground(new java.awt.Color(248, 248, 255));
-        jButtonNO.setText("NO");
-        jButtonNO.setBorder(null);
-        jButtonNO.setBorderPainted(false);
-        jButtonNO.setFocusPainted(false);
+        jButtonOK.setBackground(new java.awt.Color(37, 50, 55));
+        jButtonOK.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        jButtonOK.setForeground(new java.awt.Color(248, 248, 255));
+        jButtonOK.setText("OK");
+        jButtonOK.setBorder(null);
+        jButtonOK.setBorderPainted(false);
+        jButtonOK.setFocusPainted(false);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(45, 45, 45)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButtonSI, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonNO, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel1))
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButtonOK, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(27, Short.MAX_VALUE)
+                .addComponent(jLabelWarning, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(17, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonSI, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonNO, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addGap(15, 15, 15)
+                .addComponent(jLabelWarning, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonOK, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -181,30 +173,27 @@ public class ExitDialog extends javax.swing.JDialog implements ActionListener {
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonNO;
-    private javax.swing.JButton jButtonSI;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton jButtonOK;
+    private javax.swing.JLabel jLabelWarning;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 
-    public JButton getjButtonSI(){
-        return this.jButtonSI;
+     public JButton getjButtonOK() {
+        return this.jButtonOK;
     }
-    
-    public JButton getjButtonNO(){
-        return this.jButtonNO;
+
+    public JLabel getjLabelWarning() {
+        return this.jLabelWarning;
     }
     
     private int returnStatus = RET_CANCEL;
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource()==this.jButtonSI){
+        if(e.getSource()==this.jButtonOK){
             this.doClose(RET_OK);
             System.exit(0);
         }
-        else if(e.getSource()==this.jButtonNO){
-            this.doClose(RET_CANCEL);
-        }
     }
+    
 }

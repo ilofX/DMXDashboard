@@ -47,7 +47,6 @@ public class Main {
         PanelLuci pl = new PanelLuci();
         PanelConfigurazione pc = new PanelConfigurazione(mf, dd);
         
-        
         //Controller Classes
         MenuController mc = new MenuController(mf, mp, pl, pc, ld, wd);
         
