@@ -15,6 +15,7 @@
  */
 package it.filippo.stella.dmxdashboard.View.Panels;
 
+import it.filippo.stella.dmxdashboard.Model.ApplicationCore;
 import it.filippo.stella.dmxdashboard.View.Dialogs.DevicesDialog;
 import it.filippo.stella.dmxdashboard.View.MainFrame;
 import java.awt.Color;
@@ -42,12 +43,13 @@ public class PanelConfigurazione extends javax.swing.JPanel implements ActionLis
     private final InetAddressValidator IPValidator;
     private final DevicesDialog dd;
     private final MainFrame mf;
-
+    private final ApplicationCore ac;
     
-    public PanelConfigurazione(MainFrame mf, DevicesDialog dd) {
+    public PanelConfigurazione(MainFrame mf, DevicesDialog dd, ApplicationCore ac) {
         this.initComponents();
         this.dd = dd;
         this.mf = mf;
+        this.ac = ac;
         this.IPValidator = new InetAddressValidator();
         //this.jTextFieldFile.addMouseListener(this);
         this.jButtonDispositivi.addActionListener(this);
@@ -56,6 +58,26 @@ public class PanelConfigurazione extends javax.swing.JPanel implements ActionLis
 
     private void changeConfiguration(){
         this.jFileChooser1.showSaveDialog(this);
+    }
+    
+    private void save(){
+        this.ac.setIP(this.jTextFieldIP.getText().trim());
+        this.ac.setPort((Integer) this.jSpinnerPortaScheda.getValue());
+        this.ac.setServerPort((Integer) this.jSpinnerPorta.getValue());
+        this.ac.setAutostartConnection(this.jCheckBox3.isSelected());
+        this.ac.setAutostartServer(this.jCheckBox4.isSelected());
+        this.ac.setSecureConnection(this.jCheckBox1.isSelected());
+        this.ac.setSecureServer(this.jCheckBox2.isSelected());
+    }
+    
+    private void restore(){
+        this.jTextFieldIP.setText(this.ac.getIP());
+        this.jSpinnerPortaScheda.setValue(this.ac.getPort());
+        this.jSpinnerPorta.setValue(this.ac.getServerPort());
+        this.jCheckBox3.setSelected(this.ac.isAutostartConnection());
+        this.jCheckBox4.setSelected(this.ac.isAutostartServer());
+        this.jCheckBox1.setSelected(this.ac.isSecureConnection());
+        this.jCheckBox2.setSelected(this.ac.isSecureServer());
     }
     
     /**
@@ -274,6 +296,8 @@ public class PanelConfigurazione extends javax.swing.JPanel implements ActionLis
             this.jTextFieldIP.setText("");
             this.jTextFieldIP.requestFocus();
         }
+        this.save();
+        this.restore();
     }
     @Override
     public void focusLost(FocusEvent e) {
@@ -283,6 +307,8 @@ public class PanelConfigurazione extends javax.swing.JPanel implements ActionLis
                 this.jTextFieldIP.setText("INDIRIZZO IP NON VALIDO");
             }
         }
+        this.save();
+        this.restore();
     }
     // </editor-fold>
 

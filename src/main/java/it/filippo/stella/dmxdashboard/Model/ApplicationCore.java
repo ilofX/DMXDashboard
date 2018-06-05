@@ -40,11 +40,13 @@ import org.json.JSONObject;
 public class ApplicationCore {
     
     private File saveFile;
-    private String IP="0/0/0/0";
-    private Integer Port=0;
+    private String IP="127.0.0.1";
+    private Integer Port=502;
+    private Integer ServerPort=0;
     private ArrayList<Luce> al;
     private FileInputStream fis=null;
     private PrintWriter pr=null;
+    private boolean SecureConnection,AutostartConnection,SecureServer,AutostartServer;
     private boolean firstOpen=false;   
     private boolean isDefaultLocation=true;
     
@@ -52,31 +54,31 @@ public class ApplicationCore {
         this.al=new ArrayList<>(); 
         try { 
             if((System.getProperty("os.name").toLowerCase()).contains("windows")){
-                if(!(this.saveFile=new File(System.getenv("APPDATA")+"/ADF-ModBusConnector")).exists()){
+                if(!(this.saveFile=new File(System.getenv("APPDATA")+"/ADF-DMXDashboard")).exists()){
                     this.saveFile.mkdir();
                     this.firstOpen=true;
                 }
-                if(!(this.saveFile=new File(System.getenv("APPDATA")+"/ADF-ModBusConnector/Save.json")).exists()){
+                if(!(this.saveFile=new File(System.getenv("APPDATA")+"/ADF-DMXDashboard/Save.json")).exists()){
                     this.saveFile.createNewFile();
                     this.firstOpen=true;
                 }
             }
             else if((System.getProperty("os.name").toLowerCase()).contains("mac")){
-                if(!(this.saveFile=new File(System.getenv("HOME")+"/Library/Preferences/ADF-ModBusConnector")).exists()){
+                if(!(this.saveFile=new File(System.getenv("HOME")+"/Library/Preferences/ADF-DMXDashboard")).exists()){
                     this.saveFile.mkdir();
                     this.firstOpen=true;
                 }
-                if(!(this.saveFile=new File(System.getenv("HOME")+"/Library/Preferences/ADF-ModBusConnector/Save.json")).exists()){
+                if(!(this.saveFile=new File(System.getenv("HOME")+"/Library/Preferences/ADF-DMXDashboard/Save.json")).exists()){
                     this.saveFile.createNewFile();
                     this.firstOpen=true;
                 }
             }
             else if((System.getProperty("os.name").toLowerCase()).contains("linux")){
-                if(!(this.saveFile=new File(System.getenv("HOME")+"/.ADF-ModBusConnector")).exists()){
+                if(!(this.saveFile=new File(System.getenv("HOME")+"/.ADF-DMXDashboard")).exists()){
                     this.saveFile.mkdir();
                     this.firstOpen=true;
                 }
-                if(!(this.saveFile=new File(System.getenv("HOME")+"/.ADF-ModBusConnector/Save.json")).exists()){
+                if(!(this.saveFile=new File(System.getenv("HOME")+"/.ADF-DMXDashboard/Save.json")).exists()){
                     this.saveFile.createNewFile();
                     this.firstOpen=true;
                 }
@@ -88,6 +90,9 @@ public class ApplicationCore {
             }
         } catch (IOException ex) {
             Logger.getLogger(ApplicationCore.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if(!this.firstOpen){
+            this.doRestore();
         }
     }
     
@@ -116,6 +121,7 @@ public class ApplicationCore {
         JSONObject ris = new JSONObject();
         ris.put("IP", this.IP);
         ris.put("Port", this.Port);
+        ris.put("ServerPort", this.ServerPort);
         ris.put("Lights", this.createLightArray());
         return ris;
     }
@@ -152,6 +158,7 @@ public class ApplicationCore {
             save = new JSONObject(new String(data));
             this.IP = save.getString("IP");
             this.Port = save.getInt("Port");
+            this.ServerPort = save.getInt("ServerPort");
             this.restoreLightArray(save.getJSONArray("Lights"));
         } catch (FileNotFoundException ex) {
             ris = false;
@@ -185,7 +192,7 @@ public class ApplicationCore {
     }
     
     public Luce getLuce(Integer i){
-        return this.al.get(i.intValue());
+        return this.al.get(i);
     }
     
     public void removeLuce(Integer i){
@@ -195,6 +202,46 @@ public class ApplicationCore {
     
     public void sortArray(){
         Collections.sort(this.al, new StartChannelComparator());
+    }
+
+    public Integer getServerPort() {
+        return this.ServerPort;
+    }
+
+    public void setServerPort(Integer ServerPort) {
+        this.ServerPort = ServerPort;
+    }
+
+    public boolean isSecureConnection() {
+        return this.SecureConnection;
+    }
+
+    public void setSecureConnection(boolean SecureConnection) {
+        this.SecureConnection = SecureConnection;
+    }
+
+    public boolean isAutostartConnection() {
+        return this.AutostartConnection;
+    }
+
+    public void setAutostartConnection(boolean AutostartConnection) {
+        this.AutostartConnection = AutostartConnection;
+    }
+
+    public boolean isSecureServer() {
+        return this.SecureServer;
+    }
+
+    public void setSecureServer(boolean SecureServer) {
+        this.SecureServer = SecureServer;
+    }
+
+    public boolean isAutostartServer() {
+        return this.AutostartServer;
+    }
+
+    public void setAutostartServer(boolean AutostartServer) {
+        this.AutostartServer = AutostartServer;
     }
     
     public Integer getLastChannel(){

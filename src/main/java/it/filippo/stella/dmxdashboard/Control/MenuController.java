@@ -15,6 +15,7 @@
  */
 package it.filippo.stella.dmxdashboard.Control;
 
+import it.filippo.stella.dmxdashboard.Model.ApplicationCore;
 import it.filippo.stella.dmxdashboard.View.Dialogs.ExitDialog;
 import it.filippo.stella.dmxdashboard.View.Dialogs.LightDialog;
 import it.filippo.stella.dmxdashboard.View.Dialogs.WizardDialog;
@@ -37,14 +38,16 @@ public class MenuController implements ActionListener{
     private final PanelConfigurazione pc;
     private final LightDialog ld;
     private final WizardDialog wd;
+    private final ApplicationCore ac;
 
-    public MenuController(MainFrame mf, PanelEffetti mp, PanelLuci pl, PanelConfigurazione pc, LightDialog ld, WizardDialog wd) {
+    public MenuController(MainFrame mf, PanelEffetti mp, PanelLuci pl, PanelConfigurazione pc, LightDialog ld, WizardDialog wd, ApplicationCore ac) {
         this.mf = mf;
         this.mp = mp;
         this.pl = pl;
         this.pc = pc;
         this.ld = ld;
         this.wd = wd;
+        this.ac = ac;
         this.mf.setMenuListener(this);
     }
     
@@ -86,7 +89,7 @@ public class MenuController implements ActionListener{
         }
         else if(e.getSource()==this.mf.getjButtonExit()){
             this.mf.handleMenu(true);
-            new ExitDialog(this.mf, true);
+            new ExitDialog(this.mf, true, this.ac);
         }
     }
     

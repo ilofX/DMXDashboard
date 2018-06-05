@@ -15,6 +15,7 @@
  */
 package it.filippo.stella.dmxdashboard.View.Dialogs;
 
+import it.filippo.stella.dmxdashboard.Model.ApplicationCore;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -41,12 +42,14 @@ public class ExitDialog extends javax.swing.JDialog implements ActionListener {
      */
     public static final int RET_OK = 1;
 
+    public final ApplicationCore ac;
+    
     /**
      * Creates new form ExitDialog
      * @param parent
      * @param modal
      */
-    public ExitDialog(java.awt.Frame parent, boolean modal) {
+    public ExitDialog(java.awt.Frame parent, boolean modal, ApplicationCore ac) {
         super(parent, modal);
         this.initComponents();
 
@@ -62,6 +65,7 @@ public class ExitDialog extends javax.swing.JDialog implements ActionListener {
             }
         });
         
+        this.ac = ac;
         this.jButtonSI.addActionListener(this);
         this.jButtonNO.addActionListener(this);
         this.pack();
@@ -176,6 +180,7 @@ public class ExitDialog extends javax.swing.JDialog implements ActionListener {
     
     private void doClose(int retStatus) {
         this.returnStatus = retStatus;
+        this.ac.doSave();
         this.setVisible(false);
         this.dispose();
     }

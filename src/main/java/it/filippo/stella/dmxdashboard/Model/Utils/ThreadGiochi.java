@@ -29,8 +29,6 @@ public class ThreadGiochi extends Thread {
         this.giochi = new GiochiPsichedelici();
     }
     
-    
-    
     @Override
     public void run() {
         

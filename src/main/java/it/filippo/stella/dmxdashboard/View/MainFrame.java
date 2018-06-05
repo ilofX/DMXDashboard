@@ -15,6 +15,7 @@
  */
 package it.filippo.stella.dmxdashboard.View;
 
+import it.filippo.stella.dmxdashboard.Model.ApplicationCore;
 import it.filippo.stella.dmxdashboard.View.Dialogs.ExitDialog;
 import java.awt.Dimension;
 import java.awt.event.ActionListener;
@@ -33,10 +34,13 @@ import javax.swing.JPanel;
  */
 public class MainFrame extends javax.swing.JFrame implements WindowListener {
 
+    private final ApplicationCore ac;
+    
     /**
      * Creates new form MainFrame
      */
-    public MainFrame() {
+    public MainFrame(ApplicationCore ac) {
+        this.ac = ac;
         this.initComponents();
         this.initializeMenu();
         this.pack();
@@ -408,7 +412,7 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 
     @Override
     public void windowClosing(WindowEvent e) {
-        new ExitDialog(this, true);
+        new ExitDialog(this, true, this.ac);
     }
 
     @Override

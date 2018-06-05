@@ -16,6 +16,7 @@
 package it.filippo.stella.dmxdashboard;
 
 import it.filippo.stella.dmxdashboard.Control.MenuController;
+import it.filippo.stella.dmxdashboard.Model.ApplicationCore;
 import it.filippo.stella.dmxdashboard.View.Dialogs.DevicesDialog;
 import it.filippo.stella.dmxdashboard.View.Dialogs.LightDialog;
 import it.filippo.stella.dmxdashboard.View.Dialogs.WizardDialog;
@@ -36,19 +37,21 @@ public class Main {
     public static void main(String[] args) {
         Main.setColors();
         //Model Classes
-        
+        ApplicationCore ac = new ApplicationCore();
         
         //View Classes
-        MainFrame mf = new MainFrame();
+        MainFrame mf = new MainFrame(ac);
         LightDialog ld = new LightDialog(mf, true);
         WizardDialog wd = new WizardDialog(mf, true);
         DevicesDialog dd = new DevicesDialog(mf, true);
         PanelEffetti mp = new PanelEffetti();
         PanelLuci pl = new PanelLuci();
-        PanelConfigurazione pc = new PanelConfigurazione(mf, dd);
+        PanelConfigurazione pc = new PanelConfigurazione(mf, dd, ac);
         
         //Controller Classes
-        MenuController mc = new MenuController(mf, mp, pl, pc, ld, wd);
+        MenuController mc = new MenuController(mf, mp, pl, pc, ld, wd, ac);
+        
+        //Initialization
         
         //MainFrame Visible
         mf.setVisible(true);
