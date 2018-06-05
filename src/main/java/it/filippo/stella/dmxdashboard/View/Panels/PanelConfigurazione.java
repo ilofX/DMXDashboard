@@ -16,6 +16,7 @@
 package it.filippo.stella.dmxdashboard.View.Panels;
 
 import it.filippo.stella.dmxdashboard.View.Dialogs.DevicesDialog;
+import it.filippo.stella.dmxdashboard.View.Dialogs.WarningDialog;
 import it.filippo.stella.dmxdashboard.View.MainFrame;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -57,7 +58,7 @@ public class PanelConfigurazione extends javax.swing.JPanel implements ActionLis
     private void changeConfiguration(){
         this.jFileChooser1.showSaveDialog(this);
     }
-    
+        
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -269,18 +270,15 @@ public class PanelConfigurazione extends javax.swing.JPanel implements ActionLis
     // <editor-fold defaultstate="collapsed" desc="Focus Listener">
     @Override
     public void focusGained(FocusEvent e) {
-        if(e.getSource()==this.jTextFieldIP && this.jTextFieldIP.getText().equals("INDIRIZZO IP NON VALIDO")){
-            this.jTextFieldIP.setForeground(new Color(21, 21, 21));
-            this.jTextFieldIP.setText("");
-            this.jTextFieldIP.requestFocus();
+        if(e.getSource()==this.jTextFieldIP){
         }
     }
     @Override
     public void focusLost(FocusEvent e) {
         if(e.getSource()==this.jTextFieldIP && !this.jTextFieldIP.getText().equals("")){
             if(!this.IPValidator.isValidInet4Address(this.jTextFieldIP.getText().trim())){
-                this.jTextFieldIP.setForeground(Color.RED);
-                this.jTextFieldIP.setText("INDIRIZZO IP NON VALIDO");
+                this.jTextFieldIP.setText("");
+                new WarningDialog(this.mf, true, "Indirizzo IP Errato, inserire un indirizzo valido");
             }
         }
     }
