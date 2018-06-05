@@ -65,6 +65,7 @@ public class WarningDialog extends javax.swing.JDialog implements ActionListener
             }
         });
         this.warningMessage = message;
+        this.jLabelWarning.setText(this.warningMessage);
         this.jButtonOK.addActionListener(this);
         this.pack();
         this.setLocationRelativeTo(parent);
@@ -96,6 +97,7 @@ public class WarningDialog extends javax.swing.JDialog implements ActionListener
         setBackground(new java.awt.Color(21, 21, 21));
         setMinimumSize(new java.awt.Dimension(400, 200));
         setPreferredSize(new java.awt.Dimension(415, 220));
+        setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 closeDialog(evt);
@@ -105,14 +107,17 @@ public class WarningDialog extends javax.swing.JDialog implements ActionListener
         jPanel1.setBackground(new java.awt.Color(37, 50, 55));
         jPanel1.setForeground(new java.awt.Color(248, 248, 255));
         jPanel1.setFocusable(false);
-        jPanel1.setMaximumSize(new java.awt.Dimension(300, 150));
         jPanel1.setMinimumSize(new java.awt.Dimension(300, 150));
+        java.awt.FlowLayout flowLayout1 = new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 5, 40);
+        flowLayout1.setAlignOnBaseline(true);
+        jPanel1.setLayout(flowLayout1);
 
         jLabelWarning.setBackground(new java.awt.Color(21, 21, 21));
         jLabelWarning.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
         jLabelWarning.setForeground(new java.awt.Color(248, 248, 255));
         jLabelWarning.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelWarning.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jPanel1.add(jLabelWarning);
 
         jButtonOK.setBackground(new java.awt.Color(37, 50, 55));
         jButtonOK.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
@@ -121,29 +126,7 @@ public class WarningDialog extends javax.swing.JDialog implements ActionListener
         jButtonOK.setBorder(null);
         jButtonOK.setBorderPainted(false);
         jButtonOK.setFocusPainted(false);
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButtonOK, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(27, Short.MAX_VALUE)
-                .addComponent(jLabelWarning, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(17, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(jLabelWarning, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonOK, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31))
-        );
+        jPanel1.add(jButtonOK);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -153,7 +136,9 @@ public class WarningDialog extends javax.swing.JDialog implements ActionListener
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -192,7 +177,6 @@ public class WarningDialog extends javax.swing.JDialog implements ActionListener
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()==this.jButtonOK){
             this.doClose(RET_OK);
-            System.exit(0);
         }
     }
     
