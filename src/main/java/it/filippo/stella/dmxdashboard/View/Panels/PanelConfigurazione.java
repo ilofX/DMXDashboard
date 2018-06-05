@@ -39,8 +39,6 @@ import org.apache.commons.validator.routines.InetAddressValidator;
 public class PanelConfigurazione extends javax.swing.JPanel implements ActionListener,FocusListener {
     
     private Color c;
-    //private final String _255 = "(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)";
-    //private final Pattern p = Pattern.compile( "^(?:" + this._255 + "\\.){3}" + this._255 + "$");
     private final InetAddressValidator IPValidator;
     private final DevicesDialog dd;
     private final MainFrame mf;
