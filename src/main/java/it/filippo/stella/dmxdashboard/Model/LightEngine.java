@@ -13,18 +13,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package it.filippo.stella.dmxdashboard.Model.Utils;
+package it.filippo.stella.dmxdashboard.Model;
+
+import it.filippo.stella.dmxdashboard.Model.Utils.GiochiPsichedelici;
 
 /**
  *
  * @author Filippo Stella
  * @version 2.0
  */
-public class ThreadGiochi extends Thread {
+public class LightEngine extends Thread {
 
     public final GiochiPsichedelici giochi;
 
-    public ThreadGiochi() {
+    public LightEngine() {
         super("Thread Giochi");
         this.giochi = new GiochiPsichedelici();
     }

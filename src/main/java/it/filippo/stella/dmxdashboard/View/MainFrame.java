@@ -24,6 +24,7 @@ import java.awt.event.WindowListener;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
@@ -36,11 +37,9 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 
     private final ApplicationCore ac;
     
-    /**
-     * Creates new form MainFrame
-     */
     public MainFrame(ApplicationCore ac) {
         this.ac = ac;
+        this.ac.setMf(this);
         this.initComponents();
         this.initializeMenu();
         this.pack();
@@ -102,8 +101,8 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("DMX Dashboard");
         setBackground(new java.awt.Color(21, 21, 21));
-        setMinimumSize(new java.awt.Dimension(823, 640));
-        setPreferredSize(new java.awt.Dimension(823, 640));
+        setMinimumSize(new java.awt.Dimension(823, 660));
+        setPreferredSize(new java.awt.Dimension(823, 660));
 
         jLayeredPane1.setForeground(new java.awt.Color(248, 248, 255));
         jLayeredPane1.setMinimumSize(new java.awt.Dimension(800, 600));
@@ -198,7 +197,7 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 
         jButtonExit.setBackground(new java.awt.Color(58, 140, 200));
         jButtonExit.setForeground(new java.awt.Color(248, 248, 255));
-        jButtonExit.setText("Uscire");
+        jButtonExit.setText("Uscita");
         jButtonExit.setBorder(null);
         jButtonExit.setBorderPainted(false);
         jButtonExit.setContentAreaFilled(false);
@@ -403,7 +402,22 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
     public JPanel getjPanelMenu() {
         return this.jPanelMenu;
     }
-    
+
+    public JLabel getjLabelConnessione() {
+        return this.jLabelConnessione;
+    }
+
+    public JLabel getjLabelServer() {
+        return this.jLabelServer;
+    }
+
+    public JPanel getjPanelConnection() {
+        return this.jPanelConnection;
+    }
+
+    public JPanel getjPanelServer() {
+        return this.jPanelServer;
+    }
     
     //Window listener Methods
     // <editor-fold defaultstate="collapsed" desc="Window Listener Methods">   
@@ -476,9 +490,7 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
         this.jPanelMenu.repaint();
         this.jButtonMenu.setEnabled(true);
         }
-        
+    
     }
-
- 
     
 }

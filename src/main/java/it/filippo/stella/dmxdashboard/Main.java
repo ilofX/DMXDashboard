@@ -16,7 +16,9 @@
 package it.filippo.stella.dmxdashboard;
 
 import it.filippo.stella.dmxdashboard.Control.MenuController;
+import it.filippo.stella.dmxdashboard.Control.ServicesController;
 import it.filippo.stella.dmxdashboard.Model.ApplicationCore;
+import it.filippo.stella.dmxdashboard.Model.LightEngine;
 import it.filippo.stella.dmxdashboard.View.Dialogs.DevicesDialog;
 import it.filippo.stella.dmxdashboard.View.Dialogs.LightDialog;
 import it.filippo.stella.dmxdashboard.View.Dialogs.WizardDialog;
@@ -37,7 +39,8 @@ public class Main {
     public static void main(String[] args) {
         Main.setColors();
         //Model Classes
-        ApplicationCore ac = new ApplicationCore();
+        LightEngine le = new LightEngine();
+        ApplicationCore ac = new ApplicationCore(le);
         
         //View Classes
         MainFrame mf = new MainFrame(ac);
@@ -50,6 +53,7 @@ public class Main {
         
         //Controller Classes
         MenuController mc = new MenuController(mf, mp, pl, pc, ld, wd, ac);
+        ServicesController sc = new ServicesController(mf, pc, ac);
         
         //Initialization
         

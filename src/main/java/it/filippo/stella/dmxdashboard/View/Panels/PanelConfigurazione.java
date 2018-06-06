@@ -53,6 +53,13 @@ public class PanelConfigurazione extends javax.swing.JPanel implements ActionLis
         //this.jTextFieldFile.addMouseListener(this);
         this.jButtonDispositivi.addActionListener(this);
         this.jTextFieldIP.addFocusListener(this);
+        this.jSpinnerPorta.addFocusListener(this);
+        this.jSpinnerPortaScheda.addFocusListener(this);
+        this.jCheckBox1.addFocusListener(this);
+        this.jCheckBox2.addFocusListener(this);
+        this.jCheckBox3.addFocusListener(this);
+        this.jCheckBox4.addFocusListener(this);
+        this.restore();
     }
 
     private void changeConfiguration(){

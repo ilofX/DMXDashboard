@@ -16,6 +16,7 @@
 package it.filippo.stella.dmxdashboard.Model;
 
 import it.filippo.stella.dmxdashboard.Model.Utils.StartChannelComparator;
+import it.filippo.stella.dmxdashboard.View.MainFrame;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -39,6 +40,9 @@ import org.json.JSONObject;
 
 public class ApplicationCore {
     
+    private MainFrame mf;
+    private final LightEngine le;
+    private ModbusConnection mc;
     private File saveFile;
     private String IP="127.0.0.1";
     private Integer Port=502;
@@ -50,7 +54,9 @@ public class ApplicationCore {
     private boolean firstOpen=false;   
     private boolean isDefaultLocation=true;
     
-    public ApplicationCore() {
+    public ApplicationCore(LightEngine le) {
+        this.le = le;
+        this.mc=null;
         this.al=new ArrayList<>(); 
         try { 
             if((System.getProperty("os.name").toLowerCase()).contains("windows")){
@@ -100,7 +106,7 @@ public class ApplicationCore {
         this.saveFile=new File(location);
     }
     
-    public boolean doSave(){
+    public final boolean doSave(){
         boolean ris=true;
         try {
             this.pr = new PrintWriter(this.saveFile);
@@ -122,6 +128,10 @@ public class ApplicationCore {
         ris.put("IP", this.IP);
         ris.put("Port", this.Port);
         ris.put("ServerPort", this.ServerPort);
+        ris.put("AutostartServer", this.AutostartServer);
+        ris.put("AutostartConnection", this.AutostartConnection);
+        ris.put("SecureConnection", this.SecureConnection);
+        ris.put("SecureServer", this.SecureServer);
         ris.put("Lights", this.createLightArray());
         return ris;
     }
@@ -145,7 +155,7 @@ public class ApplicationCore {
         }
     }
     
-    public boolean doRestore(){
+    public final boolean doRestore(){
         boolean ris = true;
         JSONObject save;
         try {
@@ -159,6 +169,10 @@ public class ApplicationCore {
             this.IP = save.getString("IP");
             this.Port = save.getInt("Port");
             this.ServerPort = save.getInt("ServerPort");
+            this.AutostartConnection = save.getBoolean("AutostartConnection");
+            this.AutostartServer = save.getBoolean("AutostartServer");
+            this.SecureConnection = save.getBoolean("SecureConnection");
+            this.SecureServer = save.getBoolean("SecureServer");
             this.restoreLightArray(save.getJSONArray("Lights"));
         } catch (FileNotFoundException ex) {
             ris = false;
@@ -243,7 +257,26 @@ public class ApplicationCore {
     public void setAutostartServer(boolean AutostartServer) {
         this.AutostartServer = AutostartServer;
     }
-    
+
+    public ModbusConnection getMc() {
+        return this.mc;
+    }
+
+    public void setMc(ModbusConnection mc) {
+        this.mc = mc;
+    }
+    public void setMc(String IP, Integer PORT) {
+        this.mc = new ModbusConnection(this.mf, this.le, this, IP, PORT);
+    }
+
+    public MainFrame getMf() {
+        return this.mf;
+    }
+
+    public void setMf(MainFrame mf) {
+        this.mf = mf;
+    }
+        
     public Integer getLastChannel(){
         Integer ris=0;
         if(this.al.size()>0){
