@@ -17,6 +17,8 @@ package it.filippo.stella.dmxdashboard.View.Panels;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.JButton;
@@ -30,7 +32,7 @@ import javax.swing.JTextField;
  *
  * @author Filippo
  */
-public class PanelEffetti extends javax.swing.JPanel implements MouseListener {
+public class PanelEffetti extends javax.swing.JPanel implements MouseListener, ItemListener {
     
     private Color c;
 
@@ -41,6 +43,7 @@ public class PanelEffetti extends javax.swing.JPanel implements MouseListener {
         this.initComponents();
         this.changeSpinnerColor(this.jSpinner1);
         this.jLabelColore.addMouseListener(this);
+        this.jComboBox1.addItemListener(this);
     }
 
     /**
@@ -207,4 +210,33 @@ public class PanelEffetti extends javax.swing.JPanel implements MouseListener {
     public void mouseExited(MouseEvent e) {}
     // </editor-fold> 
 
+    // <editor-fold defaultstate="collapsed" desc="Item Listener"> 
+    @Override
+    public void itemStateChanged(ItemEvent e) {
+        if(e.getSource()==this.jComboBox1){
+            switch (this.jComboBox1.getSelectedItem().toString()){
+                case "Solid Color":
+                    break;
+                case "Rainbow Effect":
+                    break;
+                case "Random Colors":
+                    break;
+                case "Jump Effect":
+                    break;
+                case "Running Lights":
+                    break;
+                case "Fading Lights":
+                    break;
+                case "Rainbow Jump":
+                    break;
+                case "Supercar Visor":
+                    break;
+                case "Aitomatic Mode":
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+    // </editor-fold>
 }

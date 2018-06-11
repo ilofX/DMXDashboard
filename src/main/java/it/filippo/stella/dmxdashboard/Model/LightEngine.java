@@ -16,6 +16,8 @@
 package it.filippo.stella.dmxdashboard.Model;
 
 import it.filippo.stella.dmxdashboard.Model.Utils.GiochiPsichedelici;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -25,9 +27,52 @@ import it.filippo.stella.dmxdashboard.Model.Utils.GiochiPsichedelici;
 public class LightEngine {
 
     private final GiochiPsichedelici giochi;
+    private Thread t;
+    private String effect;
+    private ModbusConnection mc;
     
     public LightEngine() {
         this.giochi = new GiochiPsichedelici();
+    }
+    
+    public final void setEffect(String effect, ModbusConnection mc, Integer R, Integer G, Integer B, Integer delay){
+        this.effect = effect;
+        if(this.t!=null && this.t.isAlive()){
+            try {
+                this.t.interrupt();
+                this.t.join();
+                this.setNewThread(R, G, B, delay);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(LightEngine.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+        
+    private final Thread setNewThread(Integer R, Integer G, Integer B, Integer delay){
+        switch (this.effect){
+            case "Solid Color":
+                break;
+            case "Rainbow Effect":
+                break;
+            case "Random Colors":
+                break;
+            case "Jump Effect":
+                break;
+            case "Running Lights":
+                break;
+            case "Fading Lights":
+                break;
+            case "Rainbow Jump":
+                break;
+            case "Supercar Visor":
+                break;
+            case "Aitomatic Mode":
+                break;
+            default:
+                break;
+        }
+        
+        return null;
     }
     
     

@@ -58,7 +58,10 @@ public class PanelConfigurazione extends javax.swing.JPanel implements ActionLis
         this.jCheckBox2.addFocusListener(this);
         this.jCheckBox3.addFocusListener(this);
         this.jCheckBox4.addFocusListener(this);
+        this.jCheckBox1.setVisible(false);
+        this.jCheckBox2.setVisible(false);
         this.restore();
+        
     }
 
     private void changeConfiguration(){
