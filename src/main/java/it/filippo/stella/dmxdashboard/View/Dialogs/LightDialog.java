@@ -15,28 +15,59 @@
  */
 package it.filippo.stella.dmxdashboard.View.Dialogs;
 
+import it.filippo.stella.dmxdashboard.Model.ApplicationCore;
+import it.filippo.stella.dmxdashboard.Model.Luce;
+import it.filippo.stella.dmxdashboard.View.Panels.PanelLuci;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JSpinner;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 /**
  *
  * @author Stella Filippo
+ * @version 1.0
  */
-public class LightDialog extends javax.swing.JDialog {
+public class LightDialog extends javax.swing.JDialog implements ActionListener, ChangeListener{
 
-    /**
-     * Creates new form LightDialog
-     * @param parent
-     * @param modal
-     */
-    public LightDialog(java.awt.Frame parent, boolean modal) {
+    private final ApplicationCore ac;
+    private PanelLuci pl;
+    private boolean isEdit=false;
+    private Integer index;
+    
+    public LightDialog(java.awt.Frame parent, ApplicationCore ac, boolean modal) {
         super(parent, modal);
+        this.ac = ac;
         this.initComponents();
         this.setLocationRelativeTo(parent);
         this.pack();
+        this.jComboBoxTipo.addActionListener(this);
+        this.jButtonConferma.addActionListener(this);
+        this.jButtonAnnulla.addActionListener(this);
+        this.jSpinnerR.addChangeListener(this);
     }
 
+    public void resetDialog(){
+        this.jComboBoxTipo.setSelectedIndex(0);
+        this.jSpinnerR.setValue(0);
+        this.jSpinnerG.setValue(0);
+        this.jSpinnerB.setValue(0);
+        this.jSpinnerG.setEnabled(true);
+        this.jSpinnerB.setEnabled(true);
+    }
+    
+    public void loadLamp(Luce l, Integer index){
+        this.jComboBoxTipo.setSelectedItem(l.getTipo());
+        this.jSpinnerR.setValue(l.getCanaleR());
+        this.jSpinnerG.setValue(l.getCanaleG());
+        this.jSpinnerB.setValue(l.getCanaleB());
+        this.isEdit=true;
+        this.index = index;
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -67,6 +98,7 @@ public class LightDialog extends javax.swing.JDialog {
         jLabel1.setForeground(new java.awt.Color(248, 248, 255));
         jLabel1.setText("Tipo Lampada");
 
+        jComboBoxTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Generic DMX", "RGB Lamp" }));
         jComboBoxTipo.setMaximumSize(new java.awt.Dimension(180, 30));
         jComboBoxTipo.setMinimumSize(new java.awt.Dimension(180, 30));
         jComboBoxTipo.setPreferredSize(new java.awt.Dimension(180, 30));
@@ -75,6 +107,7 @@ public class LightDialog extends javax.swing.JDialog {
         jLabel2.setForeground(new java.awt.Color(248, 248, 255));
         jLabel2.setText("Canale G");
 
+        jSpinnerR.setModel(new javax.swing.SpinnerNumberModel(0, 0, 512, 1));
         jSpinnerR.setBorder(null);
         jSpinnerR.setMaximumSize(new java.awt.Dimension(120, 22));
         jSpinnerR.setMinimumSize(new java.awt.Dimension(120, 22));
@@ -84,6 +117,7 @@ public class LightDialog extends javax.swing.JDialog {
         jLabel3.setForeground(new java.awt.Color(248, 248, 255));
         jLabel3.setText("Canale R");
 
+        jSpinnerG.setModel(new javax.swing.SpinnerNumberModel(0, 0, 512, 1));
         jSpinnerG.setBorder(null);
         jSpinnerG.setMaximumSize(new java.awt.Dimension(120, 22));
         jSpinnerG.setMinimumSize(new java.awt.Dimension(120, 22));
@@ -93,6 +127,7 @@ public class LightDialog extends javax.swing.JDialog {
         jLabel4.setForeground(new java.awt.Color(248, 248, 255));
         jLabel4.setText("Canale B");
 
+        jSpinnerB.setModel(new javax.swing.SpinnerNumberModel(0, 0, 512, 1));
         jSpinnerB.setBorder(null);
         jSpinnerB.setMaximumSize(new java.awt.Dimension(120, 22));
         jSpinnerB.setMinimumSize(new java.awt.Dimension(120, 22));
@@ -220,6 +255,53 @@ public class LightDialog extends javax.swing.JDialog {
 
     public JSpinner getjSpinnerR() {
         return this.jSpinnerR;
+    }
+
+    public void setPl(PanelLuci pl) {
+        this.pl = pl;
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if(e.getSource()==this.jComboBoxTipo){
+            switch((String)this.jComboBoxTipo.getSelectedItem()){
+                case "generic DMX":
+                    this.jSpinnerG.setEnabled(true);
+                    this.jSpinnerB.setEnabled(true);
+                    break;
+                case "RGB Lamp":
+                    this.jSpinnerR.setValue(this.ac.getLastChannel());
+                    this.jSpinnerG.setValue((int)this.jSpinnerR.getValue()+1);
+                    this.jSpinnerB.setValue((int)this.jSpinnerG.getValue()+1);
+                    this.jSpinnerG.setEnabled(false);
+                    this.jSpinnerB.setEnabled(false);
+                    break;
+                default:
+                    break;
+            }
+        }
+        else if(e.getSource()==this.jButtonConferma){
+            if(this.isEdit){
+                this.ac.editLuce(this.index, (Integer)this.jSpinnerR.getValue(), 3, (String)this.jComboBoxTipo.getSelectedItem(), (Integer)this.jSpinnerR.getValue(), (Integer)this.jSpinnerG.getValue(), (Integer)this.jSpinnerB.getValue());
+            }
+            else{
+                this.ac.addLuce(new Luce((Integer)this.jSpinnerR.getValue(), 3, (String)this.jComboBoxTipo.getSelectedItem(), (Integer)this.jSpinnerR.getValue(), (Integer)this.jSpinnerG.getValue(), (Integer)this.jSpinnerB.getValue()));
+            }
+            this.setVisible(false);
+            this.pl.refreshLuci();
+        }
+        else if(e.getSource()==this.jButtonAnnulla){
+            this.setVisible(false);
+            this.pl.refreshLuci();
+        }
+    }
+
+    @Override
+    public void stateChanged(ChangeEvent e) {
+        if(e.getSource()==this.jSpinnerR && this.jComboBoxTipo.getSelectedItem().equals("RGB Lamp")){
+            this.jSpinnerG.setValue((Integer)this.jSpinnerR.getValue());
+            this.jSpinnerB.setValue((Integer)this.jSpinnerG.getValue());
+        }
     }
     
 }

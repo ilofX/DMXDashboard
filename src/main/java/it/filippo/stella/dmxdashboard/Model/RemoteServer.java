@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Filippo Stella.
+ * Copyright 2018 Filippo.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,24 +15,15 @@
  */
 package it.filippo.stella.dmxdashboard.Model;
 
-import it.filippo.stella.dmxdashboard.Model.Utils.GiochiPsichedelici;
-
 /**
  *
- * @author Filippo Stella
- * @version 2.0
+ * @author Filippo
  */
-public class LightEngine {
+public class RemoteServer extends Thread {
 
-    private final GiochiPsichedelici giochi;
-    
-    public LightEngine() {
-        this.giochi = new GiochiPsichedelici();
+    @Override
+    public void run() {
+        
     }
-    
-    
-    
-    
-    
+  
 }
-

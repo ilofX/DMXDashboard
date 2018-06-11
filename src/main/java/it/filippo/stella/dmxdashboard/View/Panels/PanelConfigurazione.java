@@ -19,7 +19,6 @@ import it.filippo.stella.dmxdashboard.Model.ApplicationCore;
 import it.filippo.stella.dmxdashboard.View.Dialogs.DevicesDialog;
 import it.filippo.stella.dmxdashboard.View.Dialogs.WarningDialog;
 import it.filippo.stella.dmxdashboard.View.MainFrame;
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
@@ -29,6 +28,7 @@ import java.net.UnknownHostException;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JSpinner;
+import javax.swing.SpinnerNumberModel;
 import org.apache.commons.validator.routines.InetAddressValidator;
 
 /**
@@ -38,7 +38,6 @@ import org.apache.commons.validator.routines.InetAddressValidator;
  */
 public class PanelConfigurazione extends javax.swing.JPanel implements ActionListener,FocusListener {
     
-    private Color c;
     private final InetAddressValidator IPValidator;
     private final DevicesDialog dd;
     private final MainFrame mf;
@@ -49,8 +48,8 @@ public class PanelConfigurazione extends javax.swing.JPanel implements ActionLis
         this.dd = dd;
         this.mf = mf;
         this.ac = ac;
+        this.setPortSpinnerModel();
         this.IPValidator = new InetAddressValidator();
-        //this.jTextFieldFile.addMouseListener(this);
         this.jButtonDispositivi.addActionListener(this);
         this.jTextFieldIP.addFocusListener(this);
         this.jSpinnerPorta.addFocusListener(this);
@@ -64,6 +63,13 @@ public class PanelConfigurazione extends javax.swing.JPanel implements ActionLis
 
     private void changeConfiguration(){
         this.jFileChooser1.showSaveDialog(this);
+    }
+    
+    private void setPortSpinnerModel(){
+        this.jSpinnerPorta.setModel(new SpinnerNumberModel(1, 1, 65535, 1));
+        this.jSpinnerPorta.setEditor(new JSpinner.NumberEditor(this.jSpinnerPorta, "#"));
+        this.jSpinnerPortaScheda.setModel(new SpinnerNumberModel(502, 1, 65535, 1));
+        this.jSpinnerPortaScheda.setEditor(new JSpinner.NumberEditor(this.jSpinnerPortaScheda, "#"));
     }
     
     private void save(){
@@ -123,7 +129,6 @@ public class PanelConfigurazione extends javax.swing.JPanel implements ActionLis
         jLabel2.setText("Porta ModbusTCP");
 
         jSpinnerPortaScheda.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
-        jSpinnerPortaScheda.setModel(new javax.swing.SpinnerNumberModel(502, 1, 65535, 1));
         jSpinnerPortaScheda.setBorder(null);
         jSpinnerPortaScheda.setPreferredSize(new java.awt.Dimension(150, 25));
 
@@ -133,8 +138,7 @@ public class PanelConfigurazione extends javax.swing.JPanel implements ActionLis
         jLabel4.setForeground(new java.awt.Color(248, 248, 255));
         jLabel4.setText("Porta Remote");
 
-        jSpinnerPorta.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
-        jSpinnerPorta.setModel(new javax.swing.SpinnerNumberModel(1, 1, 65535, 1));
+        jSpinnerPorta.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
         jSpinnerPorta.setBorder(null);
 
         jCheckBox1.setBackground(new java.awt.Color(37, 50, 55));
@@ -168,6 +172,7 @@ public class PanelConfigurazione extends javax.swing.JPanel implements ActionLis
         jButtonDispositivi.setBorder(null);
 
         jTextFieldIP.setBackground(new java.awt.Color(248, 248, 255));
+        jTextFieldIP.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
         jTextFieldIP.setForeground(new java.awt.Color(21, 21, 21));
         jTextFieldIP.setBorder(null);
 

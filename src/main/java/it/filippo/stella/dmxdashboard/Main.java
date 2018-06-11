@@ -44,11 +44,11 @@ public class Main {
         
         //View Classes
         MainFrame mf = new MainFrame(ac);
-        LightDialog ld = new LightDialog(mf, true);
+        LightDialog ld = new LightDialog(mf, ac, true);
         WizardDialog wd = new WizardDialog(mf, true);
         DevicesDialog dd = new DevicesDialog(mf, true);
         PanelEffetti mp = new PanelEffetti();
-        PanelLuci pl = new PanelLuci();
+        PanelLuci pl = new PanelLuci(ac, ld);
         PanelConfigurazione pc = new PanelConfigurazione(mf, dd, ac);
         
         //Controller Classes

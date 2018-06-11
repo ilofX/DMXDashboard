@@ -15,25 +15,45 @@
  */
 package it.filippo.stella.dmxdashboard.View.Panels;
 
+import it.filippo.stella.dmxdashboard.Model.ApplicationCore;
+import it.filippo.stella.dmxdashboard.Model.Luce;
+import it.filippo.stella.dmxdashboard.View.Dialogs.LightDialog;
 import java.awt.Color;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
-import javax.swing.JPanel;
+import javax.swing.JList;
 
 /**
  *
  * @author Filippo
  */
-public class PanelLuci extends javax.swing.JPanel implements MouseListener {
-    
+public class PanelLuci extends javax.swing.JPanel implements ActionListener {
+
+    private final ApplicationCore ac;
+    private final LightDialog ld;
     private Color c;
 
-    /**
-     * Creates new form MainPanel
-     */
-    public PanelLuci() {
+    public PanelLuci(ApplicationCore ac, LightDialog ld) {
+        this.ac = ac;
+        this.ld = ld;
+        this.ld.setPl(this);
         this.initComponents();
+        this.refreshLuci();
+        this.jButtonAggiungi.addActionListener(this);
+        this.jButtonModifica.addActionListener(this);
+        this.jButtonRimuovi.addActionListener(this);
+    }
+
+    public final void refreshLuci() {
+        this.ac.sortArray();
+        DefaultListModel<String> model = new DefaultListModel<>();
+        for(int i=0;i<this.ac.getLightNumber();i++){
+            Luce l = this.ac.getLuce(i);
+            model.addElement(l.getTipo() + " | Start: " + l.getStart());
+        }
+        this.jListLuci.setModel(model);
     }
 
     /**
@@ -46,7 +66,7 @@ public class PanelLuci extends javax.swing.JPanel implements MouseListener {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jPanelLuci = new javax.swing.JPanel();
+        jListLuci = new javax.swing.JList<>();
         jButtonRimuovi = new javax.swing.JButton();
         jButtonModifica = new javax.swing.JButton();
         jButtonAggiungi = new javax.swing.JButton();
@@ -61,10 +81,12 @@ public class PanelLuci extends javax.swing.JPanel implements MouseListener {
         jScrollPane1.setName(""); // NOI18N
         jScrollPane1.setPreferredSize(new java.awt.Dimension(350, 534));
 
-        jPanelLuci.setBackground(new java.awt.Color(37, 50, 55));
-        jPanelLuci.setForeground(new java.awt.Color(248, 248, 255));
-        jPanelLuci.setLayout(new javax.swing.BoxLayout(jPanelLuci, javax.swing.BoxLayout.Y_AXIS));
-        jScrollPane1.setViewportView(jPanelLuci);
+        jListLuci.setBackground(new java.awt.Color(37, 50, 55));
+        jListLuci.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        jListLuci.setForeground(new java.awt.Color(248, 248, 255));
+        jListLuci.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jListLuci.setLayoutOrientation(javax.swing.JList.VERTICAL_WRAP);
+        jScrollPane1.setViewportView(jListLuci);
 
         jButtonRimuovi.setBackground(new java.awt.Color(37, 50, 55));
         jButtonRimuovi.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
@@ -105,7 +127,7 @@ public class PanelLuci extends javax.swing.JPanel implements MouseListener {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(77, 77, 77)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButtonModifica, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -117,7 +139,7 @@ public class PanelLuci extends javax.swing.JPanel implements MouseListener {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButtonAggiungi, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -125,7 +147,7 @@ public class PanelLuci extends javax.swing.JPanel implements MouseListener {
                         .addGap(22, 22, 22)
                         .addComponent(jButtonRimuovi, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addGap(18, 18, 18))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -134,11 +156,11 @@ public class PanelLuci extends javax.swing.JPanel implements MouseListener {
     private javax.swing.JButton jButtonAggiungi;
     private javax.swing.JButton jButtonModifica;
     private javax.swing.JButton jButtonRimuovi;
-    private javax.swing.JPanel jPanelLuci;
+    private javax.swing.JList<String> jListLuci;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
     // </editor-fold> 
-    
+
     public JButton getjButtonAggiungi() {
         return this.jButtonAggiungi;
     }
@@ -151,23 +173,26 @@ public class PanelLuci extends javax.swing.JPanel implements MouseListener {
         return this.jButtonRimuovi;
     }
 
-    public JPanel getjPanelLuci() {
-        return this.jPanelLuci;
+    public JList getjListLuci() {
+        return this.jListLuci;
     }
-    
-    // <editor-fold defaultstate="collapsed" desc="Mouse Listener"> 
-    //Implementation of mouse listener for JColorChooser
+
+    // <editor-fold defaultstate="collapsed" desc="Action Listener"> 
     @Override
-    public void mouseClicked(MouseEvent e) {
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == this.jButtonAggiungi) {
+            this.ld.setLocationRelativeTo(this.getParent());
+            this.ld.resetDialog();
+            this.ld.setVisible(true);
+        } else if (e.getSource() == this.jButtonModifica && this.jListLuci.getSelectedIndex()!=-1) {
+            this.ld.setLocationRelativeTo(this.getParent());
+            this.ld.loadLamp(this.ac.getLuce(this.jListLuci.getSelectedIndex()), this.jListLuci.getSelectedIndex());
+            this.ld.setVisible(true);
+        } else if (e.getSource() == this.jButtonRimuovi && this.jListLuci.getSelectedIndex()!=-1) {
+            this.ac.removeLuce(this.jListLuci.getSelectedIndex());
+            this.refreshLuci();
+        }
     }
-    @Override
-    public void mousePressed(MouseEvent e) {}
-    @Override
-    public void mouseReleased(MouseEvent e) {}
-    @Override
-    public void mouseEntered(MouseEvent e) {}
-    @Override
-    public void mouseExited(MouseEvent e) {}
     // </editor-fold> 
-    
+
 }

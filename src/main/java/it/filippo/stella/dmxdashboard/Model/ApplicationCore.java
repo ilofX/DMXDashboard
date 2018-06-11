@@ -147,9 +147,8 @@ public class ApplicationCore {
     }
     
     private void restoreLightArray(JSONArray lights){
-        Iterator elabora = lights.toList().iterator();
-        while(elabora.hasNext()){
-            JSONObject obj = (JSONObject) elabora.next();                    
+        for(int i=0;i<lights.length();i++){
+            JSONObject obj = lights.getJSONObject(i);
             Luce l = new Luce(obj.getInt("Start"), obj.getInt("nCanali"), obj.getString("Tipo"), obj.getInt("CanaleR"), obj.getInt("CanaleG"), obj.getInt("CanaleB"));
             this.al.add(l);
         }
@@ -305,6 +304,10 @@ public class ApplicationCore {
         this.al.get(i).setCanaleR(canaleR);
         this.al.get(i).setCanaleG(canaleG);
         this.al.get(i).setCanaleB(canaleB);
+    }
+    
+    public Integer getLightNumber(){
+        return this.al.size();
     }
      
 }

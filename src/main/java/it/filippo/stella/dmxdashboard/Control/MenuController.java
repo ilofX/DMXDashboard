@@ -54,7 +54,7 @@ public class MenuController implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()==this.mf.getJButtonMenu()){
-            if(mf.isMenuOpen()){
+            if(this.mf.isMenuOpen()){
                 this.mf.handleMenu(true);
             }
             else{
@@ -74,6 +74,7 @@ public class MenuController implements ActionListener{
             this.mf.revalidate();
             this.mf.repaint();    
             this.mf.handleMenu(true);
+            this.pl.refreshLuci();
         }
         else if(e.getSource()==this.mf.getjButtonAppConfig()){
             this.mf.getJPanelMain().removeAll();

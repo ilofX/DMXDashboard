@@ -103,10 +103,10 @@ public class Luce {
         ris.put("Tipo", this.tipo);
         ris.put("Start", this.start);             
         ris.put("nCanali", this.nCanali);
-        ris.put("canaleR", this.canaleR);
-        ris.put("canaleG", this.canaleG);
-        ris.put("canaleB", this.canaleB);
+        ris.put("CanaleR", this.canaleR);
+        ris.put("CanaleG", this.canaleG);
+        ris.put("CanaleB", this.canaleB);
         return ris;
     }
-  
+
 }
