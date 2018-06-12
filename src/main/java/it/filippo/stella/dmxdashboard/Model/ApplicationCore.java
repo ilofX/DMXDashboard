@@ -57,6 +57,7 @@ public class ApplicationCore {
     public ApplicationCore(LightEngine le) {
         this.le = le;
         this.mc=null;
+        this.le.setApplicationCore(this);
         this.al=new ArrayList<>(); 
         try { 
             if((System.getProperty("os.name").toLowerCase()).contains("windows")){
@@ -105,6 +106,11 @@ public class ApplicationCore {
     public void changeLocation(String location){
         this.saveFile=new File(location);
     }
+    
+    public ArrayList getLightList(){
+        return this.al;
+    }
+    
     
     public final boolean doSave(){
         boolean ris=true;

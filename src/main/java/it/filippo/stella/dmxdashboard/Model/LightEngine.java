@@ -16,6 +16,7 @@
 package it.filippo.stella.dmxdashboard.Model;
 
 import it.filippo.stella.dmxdashboard.Model.Utils.GiochiPsichedelici;
+import it.filippo.stella.dmxdashboard.Model.Utils.LightThread;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -30,9 +31,14 @@ public class LightEngine {
     private Thread t;
     private String effect;
     private ModbusConnection mc;
+    private ApplicationCore ac;
     
     public LightEngine() {
         this.giochi = new GiochiPsichedelici();
+    }
+    
+    public void setApplicationCore(ApplicationCore ac){
+        this.ac = ac;
     }
     
     public final void setEffect(String effect, ModbusConnection mc, Integer R, Integer G, Integer B, Integer delay){
@@ -51,6 +57,12 @@ public class LightEngine {
     private final Thread setNewThread(Integer R, Integer G, Integer B, Integer delay){
         switch (this.effect){
             case "Solid Color":
+                this.t = new LightThread(this.effect, delay, this.mc, this) {
+                    @Override
+                    public void run() {
+                        this.splitArray(GiochiPsichedelici.Set_every_led_at_Color(ac.getLightList(), new byte[512], R, G, B), ac.getFirstChannel(), ac.getLastChannel());
+                    }
+                };
                 break;
             case "Rainbow Effect":
                 break;
@@ -71,13 +83,9 @@ public class LightEngine {
             default:
                 break;
         }
-        
         return null;
     }
-    
-    
-    
-    
+
     
 }
 

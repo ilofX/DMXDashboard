@@ -216,24 +216,45 @@ public class PanelEffetti extends javax.swing.JPanel implements MouseListener, I
         if(e.getSource()==this.jComboBox1){
             switch (this.jComboBox1.getSelectedItem().toString()){
                 case "Solid Color":
+                    this.jLabelColore.setEnabled(true);
+                    this.jSpinner1.setEnabled(false);
                     break;
                 case "Rainbow Effect":
+                    this.jLabelColore.setEnabled(false);
+                    this.jSpinner1.setEnabled(true);
                     break;
                 case "Random Colors":
+                    this.jLabelColore.setEnabled(false);
+                    this.jSpinner1.setEnabled(true);
                     break;
                 case "Jump Effect":
+                    this.jLabelColore.setEnabled(true);
+                    this.jSpinner1.setEnabled(true);
                     break;
                 case "Running Lights":
+                    this.jLabelColore.setEnabled(true);
+                    this.jSpinner1.setEnabled(true);
                     break;
                 case "Fading Lights":
+                    this.jLabelColore.setEnabled(true);
+                    this.jSpinner1.setEnabled(false);
                     break;
                 case "Rainbow Jump":
+                    this.jLabelColore.setEnabled(true);
+                    this.jSpinner1.setEnabled(true);
                     break;
                 case "Supercar Visor":
+                    this.jLabelColore.setEnabled(true);
+                    this.jSpinner1.setEnabled(true);
                     break;
                 case "Aitomatic Mode":
+                    this.jLabelColore.setEnabled(false);
+                    this.jSpinner1.setEnabled(false);
                     break;
                 default:
+                    this.jLabelColore.setEnabled(false);
+                    this.jSpinner1.setEnabled(false);
+                    this.jButton1.setEnabled(false);
                     break;
             }
         }
