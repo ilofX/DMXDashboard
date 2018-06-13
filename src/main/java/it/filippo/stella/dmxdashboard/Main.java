@@ -15,6 +15,7 @@
  */
 package it.filippo.stella.dmxdashboard;
 
+import it.filippo.stella.dmxdashboard.Control.LightThreadHandler;
 import it.filippo.stella.dmxdashboard.Control.MenuController;
 import it.filippo.stella.dmxdashboard.Control.ServicesController;
 import it.filippo.stella.dmxdashboard.Model.ApplicationCore;
@@ -47,15 +48,17 @@ public class Main {
         LightDialog ld = new LightDialog(mf, ac, true);
         WizardDialog wd = new WizardDialog(mf, true);
         DevicesDialog dd = new DevicesDialog(mf, true);
-        PanelEffetti mp = new PanelEffetti();
+        PanelEffetti mp = new PanelEffetti(ac);
         PanelLuci pl = new PanelLuci(ac, ld);
         PanelConfigurazione pc = new PanelConfigurazione(mf, dd, ac);
         
         //Controller Classes
         MenuController mc = new MenuController(mf, mp, pl, pc, ld, wd, ac);
         ServicesController sc = new ServicesController(mf, pc, ac);
+        LightThreadHandler lth = new LightThreadHandler(le, ac, mp);
         
         //Initialization
+        ac.doInit();
         
         //MainFrame Visible
         mf.setVisible(true);

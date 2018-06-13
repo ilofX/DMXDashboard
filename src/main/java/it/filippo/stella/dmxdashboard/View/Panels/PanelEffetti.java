@@ -15,6 +15,7 @@
  */
 package it.filippo.stella.dmxdashboard.View.Panels;
 
+import it.filippo.stella.dmxdashboard.Model.ApplicationCore;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.event.ItemEvent;
@@ -34,16 +35,14 @@ import javax.swing.JTextField;
  */
 public class PanelEffetti extends javax.swing.JPanel implements MouseListener, ItemListener {
     
-    private Color c;
+    private Color c = Color.BLACK;
 
-    /**
-     * Creates new form MainPanel
-     */
-    public PanelEffetti() {
+    public PanelEffetti(ApplicationCore ac) {
         this.initComponents();
         this.changeSpinnerColor(this.jSpinner1);
         this.jLabelColore.addMouseListener(this);
         this.jComboBox1.addItemListener(this);
+        ac.setPe(this);
     }
 
     /**
@@ -69,7 +68,7 @@ public class PanelEffetti extends javax.swing.JPanel implements MouseListener, I
         setPreferredSize(new java.awt.Dimension(800, 570));
 
         jComboBox1.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Solid Color", "Rainbow Effect", "Random Colors", "Jump Effect", "Running Lights", "Fading Lights", "Rainbow Jump", "Supercar Visor", "Automatic Mode" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Solid Color", "Rainbow Effect", "Random Colors", "Jump Effect", "Fading Lights", "Rainbow Jump", "Supercar Visor", "Automatic Mode" }));
         jComboBox1.setBorder(null);
         jComboBox1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jComboBox1.setMinimumSize(new java.awt.Dimension(200, 30));
@@ -104,6 +103,7 @@ public class PanelEffetti extends javax.swing.JPanel implements MouseListener, I
         jButton1.setText("    Applica");
         jButton1.setBorder(null);
         jButton1.setDoubleBuffered(true);
+        jButton1.setEnabled(false);
         jButton1.setFocusPainted(false);
         jButton1.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
 
@@ -174,6 +174,10 @@ public class PanelEffetti extends javax.swing.JPanel implements MouseListener, I
     // End of variables declaration//GEN-END:variables
     // </editor-fold> 
     
+    public Color getColor(){
+        return this.c;
+    }
+    
     public JButton getjButton1() {
         return this.jButton1;
     }
@@ -228,10 +232,6 @@ public class PanelEffetti extends javax.swing.JPanel implements MouseListener, I
                     this.jSpinner1.setEnabled(true);
                     break;
                 case "Jump Effect":
-                    this.jLabelColore.setEnabled(true);
-                    this.jSpinner1.setEnabled(true);
-                    break;
-                case "Running Lights":
                     this.jLabelColore.setEnabled(true);
                     this.jSpinner1.setEnabled(true);
                     break;

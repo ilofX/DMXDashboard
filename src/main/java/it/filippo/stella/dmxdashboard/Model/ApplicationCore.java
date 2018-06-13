@@ -17,6 +17,7 @@ package it.filippo.stella.dmxdashboard.Model;
 
 import it.filippo.stella.dmxdashboard.Model.Utils.StartChannelComparator;
 import it.filippo.stella.dmxdashboard.View.MainFrame;
+import it.filippo.stella.dmxdashboard.View.Panels.PanelEffetti;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -41,6 +42,7 @@ import org.json.JSONObject;
 public class ApplicationCore {
     
     private MainFrame mf;
+    private PanelEffetti pe;
     private final LightEngine le;
     private ModbusConnection mc;
     private File saveFile;
@@ -98,19 +100,36 @@ public class ApplicationCore {
         } catch (IOException ex) {
             Logger.getLogger(ApplicationCore.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+    }    
+    public void changeLocation(String location){
+        this.saveFile=new File(location);
+    }
+    
+    public void doInit(){
         if(!this.firstOpen){
             this.doRestore();
         }
+        if(this.AutostartConnection){
+            this.setMc(this.IP, this.Port);
+        }
+        if(this.AutostartServer){
+        
+        }
     }
     
-    public void changeLocation(String location){
-        this.saveFile=new File(location);
+    public void doClose(){
+        this.mc.close();
+        this.doSave();
     }
     
     public ArrayList getLightList(){
         return this.al;
     }
     
+    public void setPe(PanelEffetti pe){
+        this.pe = pe;
+    }
     
     public final boolean doSave(){
         boolean ris=true;
@@ -271,7 +290,7 @@ public class ApplicationCore {
         this.mc = mc;
     }
     public void setMc(String IP, Integer PORT) {
-        this.mc = new ModbusConnection(this.mf, this.le, this, IP, PORT);
+        this.mc = new ModbusConnection(this.mf, this.pe, this.le, this, IP, PORT);
     }
 
     public MainFrame getMf() {

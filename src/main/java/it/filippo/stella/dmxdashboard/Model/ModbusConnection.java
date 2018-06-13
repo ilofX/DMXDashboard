@@ -22,6 +22,7 @@ import com.digitalpetri.modbus.requests.WriteMultipleRegistersRequest;
 import com.digitalpetri.modbus.responses.WriteMultipleRegistersResponse;
 import io.netty.util.ReferenceCountUtil;
 import it.filippo.stella.dmxdashboard.View.MainFrame;
+import it.filippo.stella.dmxdashboard.View.Panels.PanelEffetti;
 import java.awt.Color;
 import java.time.Duration;
 import java.util.concurrent.CompletableFuture;
@@ -35,15 +36,17 @@ import java.util.logging.Logger;
 public class ModbusConnection {
     
     private final MainFrame mf;
+    private final PanelEffetti pe;
     private final ApplicationCore ac;
     private final LightEngine le;
     private final ModbusTcpMaster master;
     private boolean isConnected=false;
 
-    public ModbusConnection(MainFrame mf, LightEngine le, ApplicationCore ac, String IP, Integer PORT) {
+    public ModbusConnection(MainFrame mf, PanelEffetti pe, LightEngine le, ApplicationCore ac, String IP, Integer PORT) {
         this.mf = mf;
         this.le = le;
         this.ac = ac;
+        this.pe = pe;
         ModbusTcpMasterConfig config = new ModbusTcpMasterConfig.Builder(IP).setPort(PORT).setTimeout(Duration.ofSeconds(1)).build();
         this.master = new ModbusTcpMaster(config);
         CompletableFuture future = this.master.connect();
@@ -56,25 +59,23 @@ public class ModbusConnection {
             this.close();
         }
         this.mf.getjPanelConnection().setBackground(new Color(0, 255, 0));
+        this.pe.getjButton1().setEnabled(true);
         this.isConnected=true;
     }
     
     public void writeMultipleRegisters(byte v[]) {
         CompletableFuture<WriteMultipleRegistersResponse> future;
-        WriteMultipleRegistersRequest request = new WriteMultipleRegistersRequest(0, v.length, v);
-        future = this.master.sendRequest(request, 0);
+        WriteMultipleRegistersRequest request = new WriteMultipleRegistersRequest(0, v.length/2, v);
+        future = this.master.sendRequest(request, 1);
         
         future.whenCompleteAsync((response,ex) -> {
             if (response != null) {
                 ReferenceCountUtil.release(response);
+                System.out.println("query OK");
             } else {
                 Logger.getLogger(ModbusConnection.class.getName()).log(Level.SEVERE, ex.getMessage(), "Completed exceptionally, message={}" + ex);
             }
         },Modbus.sharedExecutor());
-        if(future.isCompletedExceptionally()){
-            //this.le.stopException();
-            this.close();
-        }
     }
     
     public final void close(){
@@ -84,10 +85,8 @@ public class ModbusConnection {
                 ReferenceCountUtil.release(response);
             }
         },Modbus.sharedExecutor());
-        if(future.isCompletedExceptionally()){
-            this.close();
-        }
-        this.mf.getjPanelConnection().setBackground(new Color(255, 0, 0));
+        this.mf.getjPanelConnection().setBackground(new Color(144, 0, 0));
+        this.pe.getjButton1().setEnabled(false);
         this.isConnected=false;
     }
 

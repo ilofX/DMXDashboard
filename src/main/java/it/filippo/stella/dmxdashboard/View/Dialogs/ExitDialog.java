@@ -206,6 +206,7 @@ public class ExitDialog extends javax.swing.JDialog implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()==this.jButtonSI){
             this.doClose(RET_OK);
+            this.ac.doClose();
             System.exit(0);
         }
         else if(e.getSource()==this.jButtonNO){

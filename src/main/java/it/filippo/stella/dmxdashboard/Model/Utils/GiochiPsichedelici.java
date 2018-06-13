@@ -510,9 +510,15 @@ public class GiochiPsichedelici {
              valore_g=al.get(i).getValoreG();
              valore_b=al.get(i).getValoreB();
              
+             /*
              v[canale_r-1]=(byte) valore_r;
              v[canale_g-1]=(byte) valore_g;
              v[canale_b-1]=(byte) valore_b;
+             */
+             v[canale_r]=(byte) valore_r;
+             v[canale_g]=(byte) valore_g;
+             v[canale_b]=(byte) valore_b;
+             
         }
         //System.out.println(Arrays.toString(v));
         return v;
