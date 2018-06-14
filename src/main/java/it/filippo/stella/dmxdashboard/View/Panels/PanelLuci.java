@@ -86,6 +86,7 @@ public class PanelLuci extends javax.swing.JPanel implements ActionListener {
         jListLuci.setForeground(new java.awt.Color(248, 248, 255));
         jListLuci.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jListLuci.setLayoutOrientation(javax.swing.JList.VERTICAL_WRAP);
+        jListLuci.setVisibleRowCount(-1);
         jScrollPane1.setViewportView(jListLuci);
 
         jButtonRimuovi.setBackground(new java.awt.Color(37, 50, 55));

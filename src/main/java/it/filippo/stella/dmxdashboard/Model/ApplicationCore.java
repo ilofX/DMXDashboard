@@ -119,7 +119,9 @@ public class ApplicationCore {
     }
     
     public void doClose(){
-        this.mc.close();
+        if(this.mc!=null){
+            this.mc.close();
+        }
         this.doSave();
     }
     
