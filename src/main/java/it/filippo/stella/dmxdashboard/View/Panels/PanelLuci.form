@@ -99,6 +99,7 @@
             </Property>
             <Property name="selectionMode" type="int" value="0"/>
             <Property name="layoutOrientation" type="int" value="1"/>
+            <Property name="visibleRowCount" type="int" value="-1"/>
           </Properties>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>

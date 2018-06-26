@@ -54,7 +54,6 @@ public class ApplicationCore {
     private PrintWriter pr=null;
     private boolean SecureConnection,AutostartConnection,SecureServer,AutostartServer;
     private boolean firstOpen=false;   
-    private boolean isDefaultLocation=true;
     
     public ApplicationCore(LightEngine le) {
         this.le = le;

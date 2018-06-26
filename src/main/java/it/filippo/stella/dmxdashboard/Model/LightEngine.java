@@ -28,7 +28,6 @@ import java.util.logging.Logger;
  */
 public class LightEngine {
 
-    private final GiochiPsichedelici giochi;
     private LightThread t;
     private String effect;
     private ModbusConnection mc;
@@ -36,7 +35,6 @@ public class LightEngine {
     private final Random RAND;
     
     public LightEngine() {
-        this.giochi = new GiochiPsichedelici();
         this.RAND = new Random();
     }
     

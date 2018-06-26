@@ -121,7 +121,7 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
         jButtonMenu.setBorderPainted(false);
         jButtonMenu.setFocusPainted(false);
 
-        jLabel2.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Ubuntu", 3, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(248, 248, 255));
         jLabel2.setText("DMX Dashboard");
 
