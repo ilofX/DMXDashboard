@@ -48,6 +48,7 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
     }
     
     private void initializeMenu(){
+        this.jButtonWizard.setVisible(false);
         this.jLayeredPane1.setLayer(this.jPanelMenu, JLayeredPane.DRAG_LAYER);
         this.jPanelMenu.setBounds(0, 20, 0, 200);
         this.jPanelMenu.setPreferredSize(new Dimension(0, this.jPanelMenu.getHeight()));

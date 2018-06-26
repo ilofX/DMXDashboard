@@ -46,7 +46,7 @@ public class ApplicationCore {
     private final LightEngine le;
     private ModbusConnection mc;
     private File saveFile;
-    private String IP="127.0.0.1";
+    private String IP;
     private Integer Port=502;
     private Integer ServerPort=0;
     private ArrayList<Luce> al;
@@ -100,16 +100,15 @@ public class ApplicationCore {
         } catch (IOException ex) {
             Logger.getLogger(ApplicationCore.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+        if(!this.firstOpen){
+            this.doRestore();
+        } 
     }    
     public void changeLocation(String location){
         this.saveFile=new File(location);
     }
     
     public void doInit(){
-        if(!this.firstOpen){
-            this.doRestore();
-        }
         if(this.AutostartConnection){
             this.setMc(this.IP, this.Port);
         }
@@ -119,7 +118,9 @@ public class ApplicationCore {
     }
     
     public void doClose(){
-        this.mc.close();
+        if(this.mc!=null && this.mc.isConnected()){
+            this.mc.close();
+        }
         this.doSave();
     }
     
