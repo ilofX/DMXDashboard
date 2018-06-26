@@ -265,7 +265,10 @@ public class LightDialog extends javax.swing.JDialog implements ActionListener, 
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()==this.jComboBoxTipo){
             switch((String)this.jComboBoxTipo.getSelectedItem()){
-                case "generic DMX":
+                case "Generic DMX":
+                    this.jSpinnerR.setValue(this.ac.getLastChannel());
+                    this.jSpinnerG.setValue(this.ac.getLastChannel());
+                    this.jSpinnerB.setValue(this.ac.getLastChannel());
                     this.jSpinnerG.setEnabled(true);
                     this.jSpinnerB.setEnabled(true);
                     break;
