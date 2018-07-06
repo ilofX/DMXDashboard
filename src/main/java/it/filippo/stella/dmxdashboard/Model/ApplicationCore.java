@@ -323,12 +323,17 @@ public class ApplicationCore {
     }
     
     public void editLuce(Integer i, Integer start, Integer nCanali, String tipo, Integer canaleR, Integer canaleG, Integer canaleB){
-        this.al.get(i).setTipo(tipo);
-        this.al.get(i).setStart(start);
-        this.al.get(i).setnCanali(nCanali);
-        this.al.get(i).setCanaleR(canaleR);
-        this.al.get(i).setCanaleG(canaleG);
-        this.al.get(i).setCanaleB(canaleB);
+        if(this.al.get(i)!=null){
+            this.al.get(i).setTipo(tipo);
+            this.al.get(i).setStart(start);
+            this.al.get(i).setnCanali(nCanali);
+            this.al.get(i).setCanaleR(canaleR);
+            this.al.get(i).setCanaleG(canaleG);
+            this.al.get(i).setCanaleB(canaleB);
+        }
+        else{
+            this.al.add(new Luce(start, nCanali, tipo, canaleR, canaleG, canaleB));
+        }
     }
     
     public Integer getLightNumber(){
